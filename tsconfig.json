@@ -5,15 +5,22 @@
     "strict": true,
     "jsx": "preserve",
     "importHelpers": true,
+    "strictFunctionTypes": false,
     "moduleResolution": "node",
     "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
     "esModuleInterop": true,
+    "downlevelIteration": true,
     "allowSyntheticDefaultImports": true,
     "sourceMap": true,
     "baseUrl": ".",
     "types": [
       "webpack-env",
-      "webpack"
+      "webpack",
+      "vue-tsx-support/enable-check",
+      "vue-tsx-support/options/allow-unknown-props",
+      "webpack",
+      "webpack-env"
     ],
     "paths": {
       "@/*": [
