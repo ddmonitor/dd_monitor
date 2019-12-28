@@ -1,0 +1,19 @@
+@import "./variables.scss";
+
+body {
+  margin: 0;
+  > div#app {
+    height: 100vh;
+    > div {
+      height: 100%;
+      > .el-header {
+        height: auto !important;
+      }
+    }
+  }
+}
+
+div {
+  margin: 0;
+  box-sizing: border-box;
+}

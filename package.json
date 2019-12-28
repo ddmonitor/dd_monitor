@@ -5,6 +5,7 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
+    "build:full": "vue-cli-service build && serve ./dist",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
@@ -18,6 +19,7 @@
     "vuex": "^3.1.2"
   },
   "devDependencies": {
+    "@types/webpack": "^4.41.0",
     "@vue/cli-plugin-babel": "^4.1.0",
     "@vue/cli-plugin-eslint": "^4.1.0",
     "@vue/cli-plugin-pwa": "^4.1.0",
