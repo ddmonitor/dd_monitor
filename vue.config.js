@@ -5,6 +5,10 @@ module.exports = {
 
   pwa: {
     name: "DD大屏",
+    themeColor: "#49c8f0",
+    manifestOptions: {
+
+    },
     workboxPluginMode: 'InjectManifest',
     workboxOptions: { 
       swSrc: 'src/sw.js',

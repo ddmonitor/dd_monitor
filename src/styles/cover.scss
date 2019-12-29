@@ -1,0 +1,5 @@
+@import "./variables.scss";
+.el-dropdown-menu__item:not(.is-disabled).is-select {
+  background-color: $primary-light-7;
+  color: $primary-color;
+}

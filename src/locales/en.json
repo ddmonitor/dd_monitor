@@ -1,3 +1,6 @@
 {
-  "message": "hello i18n !!"
+  "appName": "DD Monitor",
+  "buttons": {
+    "language": "language"
+  }
 }
