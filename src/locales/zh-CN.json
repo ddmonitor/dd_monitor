@@ -1,5 +1,6 @@
 {
   "appName": "DD大屏",
+  "empty": "暂无数据",
   "buttons": {
     "language": "语言"
   }

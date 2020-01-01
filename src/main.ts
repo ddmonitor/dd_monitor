@@ -1,4 +1,6 @@
 import "array-proto-ext";
+import 'reflect-metadata';
+
 import Vue from 'vue';
 
 import './plugins/axios';

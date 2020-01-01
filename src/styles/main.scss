@@ -18,5 +18,20 @@ div {
   box-sizing: border-box;
 }
 
+.d-wrap {
+  height: 100%;
+  width: 100%;
+  padding: 8px;
 
+  > div {
+    height: 100%;
+    width: 100%;
+  }
+}
+.d-valign {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 @import "./cover.scss";

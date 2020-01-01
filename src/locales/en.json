@@ -1,5 +1,6 @@
 {
   "appName": "DD Monitor",
+  "empty": "No data available",
   "buttons": {
     "language": "language"
   }

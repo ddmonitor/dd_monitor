@@ -1,5 +1,6 @@
 {
   "appName": "DDモニター",
+  "empty": "データなし",
   "buttons": {
     "language": "言語"
   }

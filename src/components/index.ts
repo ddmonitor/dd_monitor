@@ -17,7 +17,7 @@ function registerComponents() {
             name = option.name;
         }
         // 检查文件名作为组件名
-        if (!name) {
+        if (!name || name === "t") {
             const match = /([a-zA-Z0-9-_]+)\.(?:vue|tsx)$/.exec(key);
             name = match ? match[1] : "";
         }
