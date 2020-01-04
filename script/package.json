@@ -1,9 +1,10 @@
 {
   "name": "dd_monitor_helper",
-  "version": "0.1.0",
-  "description": "",
+  "version": "0.1.3",
+  "description": "dd monitor helper user script",
   "private": true,
   "main": "index.js",
+  "repository": "https://github.com/ddmonitor/dd_monitor",
   "scripts": {
     "dev": "webpack --mode development",
     "build": "node build.js"

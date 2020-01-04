@@ -8,6 +8,8 @@ async function build() {
     try {
         console.time();
         console.log("Building...");
+
+        // webpack
         config.mode = "production";
         await new Promise((resolve, reject) => {
             webpack(config).run((err, s) => {
@@ -28,11 +30,17 @@ async function build() {
             });
         });
 
+        // update version
+        const v = package.version.split(".");
+        v[2] = parseInt(v[2]) + 1;
+        package.version = v.join(".");
+
+        // add user script header
         const output = fs.readFileSync("./dist/index.js");
         const code = 
 `// ==UserScript==
 // @name         DD Monitor Helper
-// @namespace    http://tampermonkey.net/
+// @namespace    ${package.repository}
 // @version      ${package.version}
 // @description  ${package.description}
 // @author       ${package.author}
@@ -43,6 +51,7 @@ async function build() {
 
 `       + output.toString();
         fs.writeFileSync("./dist/index.js", code);
+        fs.writeFileSync("./package.json", JSON.stringify(package, null, 2));
 
         console.log(chalk.green("Build SUCCESS"));
         console.timeEnd();
