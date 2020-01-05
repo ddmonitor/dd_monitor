@@ -3,5 +3,9 @@
   "empty": "No data available",
   "buttons": {
     "language": "language"
+  },
+  "menus": {
+    "template_manage": "template manage",
+    "about": "about"
   }
 }

@@ -14,6 +14,7 @@
     "axios": "^0.18.0",
     "core-js": "^3.4.3",
     "element-ui": "^2.4.5",
+    "mockjs": "^1.1.0",
     "reflect-metadata": "^0.1.13",
     "register-service-worker": "^1.6.2",
     "vue": "^2.6.10",
@@ -26,6 +27,7 @@
   },
   "devDependencies": {
     "@kazupon/vue-i18n-loader": "^0.3.0",
+    "@types/mockjs": "^1.0.2",
     "@types/webpack": "^4.41.0",
     "@vue/cli-plugin-babel": "^4.1.0",
     "@vue/cli-plugin-eslint": "^4.1.0",

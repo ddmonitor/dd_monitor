@@ -1,6 +1,6 @@
 <template>
   <DWrap>
-    <table class="home">
+    <table class="t t3-1">
       <tr>
         <td rowspan="2" style="height:100%">
           <div>
@@ -18,7 +18,6 @@
 </template>
 
 <script lang="ts">
-import {test} from "@/api/test";
 import { Component, Vue } from 'vue-property-decorator'
 
 @Component
@@ -27,13 +26,10 @@ export default class Home extends Vue {
     // "78859960",
     // "RrsGNMMghKM"
   ];
-  mounted() {
-    test()
-  }
 }
 </script>
 <style lang="scss">
-.home {
+.t3-1 {
   height: 100%;
   width: 100%;
   td {

@@ -27,3 +27,7 @@ self.addEventListener('message', (event) => {
  */
 self.__precacheManifest = [].concat(self.__precacheManifest || []);
 workbox.precaching.precacheAndRoute(self.__precacheManifest, {});
+
+workbox.routing.registerRoute(/\/api\/.+/, new workbox.strategies.NetworkFirst({
+  cacheName: "dd_api"
+}));

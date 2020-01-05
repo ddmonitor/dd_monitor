@@ -30,6 +30,8 @@
 import { Vue, Component, Prop } from "vue-property-decorator";
 import { CreateElement } from 'vue';
 import { State, Getter, Mutation} from "vuex-class";
+
+import lang from "@/config/lang.json";
 @Component
 export default class AppBar extends Vue {
 
@@ -39,20 +41,10 @@ export default class AppBar extends Vue {
     @Mutation
     SET_LANGUAGE!: (lang: string) => void;
 
-    languages = [
-      {
-        label: "简体中文",
-        value: "zh-CN"
-      },
-            {
-        label: "English",
-        value: "en"
-      },
-            {
-        label: "日本語",
-        value: "ja"
-      }
-    ];
+    languages = lang.mapItem((v, k) => ({
+      label: v,
+      value: k
+    }));
 
     changeLanguage(lang: string) {
       this.SET_LANGUAGE(lang);

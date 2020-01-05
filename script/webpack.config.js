@@ -31,7 +31,9 @@ module.exports = {
 // @version      6.6.6
 // @description  DD Monitor Helper - development mode
 // @author       LoveKicher
-// @match        *
+// @include      https://cdn.bootcss.com/lodash.js/4.17.15/lodash.min.js
+// @match        *://schedule.hololive.tv/simple
+// @match        *://live.bilibili.com/*
 // @grant        GM_xmlhttpRequest
 // ==/UserScript==
 

@@ -7,6 +7,11 @@
 <script>
 export default {
   name: 'app',
+  mounted() {
+    window.addEventListener("message", e => {
+      console.log(e.data, e.origin)
+    })
+  },
 }
 </script>
 

@@ -7,7 +7,7 @@ import axios, { AxiosRequestConfig } from 'axios';
 // axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
 
 const config: AxiosRequestConfig = {
-  baseURL: process.env.API_BASE,
+  baseURL: process.env.VUE_APP_BASE_API,
   timeout: 60 * 1000, // Timeout
   // withCredentials: true, // Check cross-site Access-Control
 };
@@ -56,4 +56,4 @@ Plugin.install = (Vue) => {
 
 Vue.use(Plugin);
 
-export default Plugin;
+export default _axios;

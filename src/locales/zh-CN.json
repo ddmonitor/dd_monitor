@@ -3,5 +3,9 @@
   "empty": "暂无数据",
   "buttons": {
     "language": "语言"
+  },
+  "menus": {
+    "template_manage": "模板管理",
+    "about": "关于"
   }
 }
