@@ -1,7 +1,5 @@
-import "array-proto-ext";
-import { Dictionary } from 'array-proto-ext';
-
-const ctx: {
+import _ from "lodash";
+export const ctx: {
     injects: {
         test: RegExp;
         inject: () => void;

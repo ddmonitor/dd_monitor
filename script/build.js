@@ -44,6 +44,7 @@ async function build() {
 // @version      ${package.version}
 // @description  ${package.description}
 // @author       ${package.author}
+// @require      https://cdn.bootcss.com/lodash.js/4.17.15/lodash.min.js
 // @match        *://schedule.hololive.tv/simple
 // @match        *://live.bilibili.com/*
 // @grant        GM_xmlhttpRequest

@@ -1,11 +1,7 @@
-import { Dictionary } from "array-proto-ext";
-import { LoDashStatic } from "lodash";
+import { Dictionary } from "lodash";
+
 declare global {
-
-    const _: LoDashStatic;
-
     const unsafeWindow: Window & Dictionary<any>;
-
 
     interface GMInfo {
         script: Dictionary<any>;

@@ -2,7 +2,6 @@ import axios from "@/plugins/axios";
 import Mock from "mockjs";
 
 if (process.env.VUE_APP_MOCK == "true") {
-    debugger;
     Mock.mock(/\/test/, "get", {
         code: 200,
         msg: "ok",

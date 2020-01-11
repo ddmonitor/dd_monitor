@@ -1,11 +1,14 @@
 <template>
+  
   <div class="app-bar">
-      <img src="/img/dd.png" class="logo"/>
-      <div class="title">
-          {{$t("appName")}}
-      </div>
-      <div style="flex:auto"></div>
-      <div class="app-bar__buttons">
+    <transition name="slide">
+      <div class="app-bar__wrapper" v-show="expand">
+        <img src="/img/dd.png" class="logo"/>
+        <div class="title">
+            {{$t("appName")}}
+        </div>
+        <div style="flex:auto"></div>
+        <div class="app-bar__buttons">
           <el-dropdown trigger="click" @command="changeLanguage">
             <el-tooltip :content="$t('buttons.language')" placement="bottom">
               <span class="el-button el-button--small is-round" >
@@ -22,8 +25,14 @@
               </el-dropdown-item>
             </el-dropdown-menu>
           </el-dropdown>
+        </div>
       </div>
+    </transition>
+
+    <div class="arrow" :class="{'is-expand': expand}" @click="toggleExpand"></div>
   </div>
+  
+  
 </template>
 
 <script lang="ts">
@@ -36,7 +45,7 @@ import lang from "@/config/lang.json";
 export default class AppBar extends Vue {
 
     @State
-    language!: string;
+    readonly language!: string;
 
     @Mutation
     SET_LANGUAGE!: (lang: string) => void;
@@ -46,8 +55,14 @@ export default class AppBar extends Vue {
       value: k
     }));
 
+    expand = true;
+
     changeLanguage(lang: string) {
       this.SET_LANGUAGE(lang);
+    }
+
+    toggleExpand() {
+      this.expand = !this.expand;
     }
 }
 </script>
@@ -55,14 +70,18 @@ export default class AppBar extends Vue {
 <style lang="scss">
 @import "@/styles/variables.scss";
 .app-bar {
-  height: 60px;
   width: 100%;
-  background-color: $primary-dark-3;
-  display: flex;
-  align-items: center;
-  padding-left: 16px;
-  padding-right: 16px;
-  color: white;
+  position: relative;
+  .app-bar__wrapper {
+    height: 60px;
+    width: 100%;
+    background-color: $primary-dark-3;
+    display: flex;
+    align-items: center;
+    padding-left: 16px;
+    padding-right: 16px;
+    color: white;
+  }
 
   img.logo {
     height: 40px;
@@ -79,6 +98,37 @@ export default class AppBar extends Vue {
       background: none;
       color: white;
     }   
+  }
+
+  .arrow {
+    position: absolute;
+    bottom: -16px;
+    left: calc(50% - 20px);
+    height: 16px;
+    width: 40px;
+
+    background: $primary-dark-1;
+    text-align: center;
+    font-size: 12px;
+    border-radius: 0 0 5px 5px;
+    cursor: pointer;
+
+    &::before {
+      content: '▼';
+      display: inline-block;
+    }
+    &.is-expand::before {
+      content: '▲';
+      display: inline-block;
+    }
+  }
+
+  .slide-enter-active, .slide-leave-active {
+    transition: all ease .2s;
+  }
+  .slide-enter, .slide-leave-to {
+    height: 0;
+    opacity: 0;
   }
 }
 </style>

@@ -22,7 +22,7 @@ export default class YoutubeVideo extends Vue {
     id!: string; 
 
     get valid() {
-        return this.id && /[A-Za-z0-9]+/.test(this.id);
+        return this.id && /[A-Za-z0-9-_]+/.test(this.id);
     }
 
     get url() {

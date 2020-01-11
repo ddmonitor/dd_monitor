@@ -1,5 +1,6 @@
 const path = require("path");
 const webpack = require('webpack');
+/** @type {import("webpack").Configuration} */
 module.exports = {
     entry: './index.ts',
     devtool: 'source-map',
@@ -18,6 +19,9 @@ module.exports = {
             '@': path.resolve(__dirname, '../src')
         }
     },
+    externals: {
+        "lodash": "_"
+    },
     output: {
         filename: 'index.js',
         path: path.resolve(__dirname, 'dist')
@@ -31,7 +35,7 @@ module.exports = {
 // @version      6.6.6
 // @description  DD Monitor Helper - development mode
 // @author       LoveKicher
-// @include      https://cdn.bootcss.com/lodash.js/4.17.15/lodash.min.js
+// @require      https://cdn.bootcss.com/lodash.js/4.17.15/lodash.min.js
 // @match        *://schedule.hololive.tv/simple
 // @match        *://live.bilibili.com/*
 // @grant        GM_xmlhttpRequest

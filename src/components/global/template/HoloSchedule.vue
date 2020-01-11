@@ -1,12 +1,13 @@
 <template>
   <div class="holo-schedule">
-    <div class="iframe-wrap" >
+    <div class="iframe-wrap" v-loading="loading">
       <iframe
         ref="$iframe"
         src="https://schedule.hololive.tv/simple"
         border="0"
         frameborder="no"
         framespacing="0"
+        @load="onLoad"
       >
         <!-- allowfullscreen="true" scrolling="no"-->
       </iframe>
@@ -23,6 +24,12 @@ import { CreateElement } from 'vue';
 export default class HoloSchedule extends Vue {
   @Ref()
   $iframe!: HTMLIFrameElement;
+
+  loading = true;
+
+  onLoad() {
+    this.loading = false;
+  }
 }
 </script>
 

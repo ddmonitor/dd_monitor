@@ -1,51 +1,25 @@
 <template>
   <DWrap>
-    <table class="home">
-      <tr>
-        <td rowspan="2" style="height:100%">
-          <div>
-            <HoloSchedule />
-          </div>
-        </td>
-        <td><div><BVideo :aid="id[0]" /></div></td>
-      </tr>
-      <tr>
-        <!-- <td></td> -->
-        <td><div><YoutubeVideo :id="id[1]" /></div></td>
-      </tr>
-    </table>
+    <test></test>
   </DWrap>
 </template>
 
 <script lang="ts">
-import {test} from "@/api/test";
 import { Component, Vue } from 'vue-property-decorator'
-
-@Component
-export default class Home extends Vue {
-  id = [
-    // "78859960",
-    // "RrsGNMMghKM"
-  ];
-  mounted() {
-    test()
+import test from "./template/t3_1.vue"
+@Component({
+  components: {
+    test
   }
+})
+export default class Home extends Vue {
+
 }
 </script>
 <style lang="scss">
 .home {
   height: 100%;
   width: 100%;
-  td {
-    padding: 8px;
-    width: 50%;
-    height: 50%;
-    > div {
-      background-color: #aaa;
-      height: 100%;
-      width: 100%;
-      border: 1px solid #7a7a7a;
-    }
-  }
+
 }
 </style>
