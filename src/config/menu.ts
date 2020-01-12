@@ -44,7 +44,7 @@ export class MenuItem implements TreeItem<MenuData> {
 
 export default [
     new MenuItem("m1", "switch_template").$icon("fa fa-toggle-on").$children([
-        new MenuItem("m1_1", "template3_1").$data({
+        new MenuItem("m1_1", "hololive#1-2v").$data({
             route: "/home/t3_1"
         })
     ]),
