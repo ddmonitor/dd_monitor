@@ -5,6 +5,7 @@
     "language": "language"
   },
   "menus": {
+    "switch_template": "switch template",
     "template_manage": "template manage",
     "about": "about"
   }

@@ -1,13 +1,14 @@
 <template>
-  
   <div class="app-bar">
     <transition name="slide">
       <div class="app-bar__wrapper" v-show="expand">
         <img src="/img/dd.png" class="logo"/>
-        <div class="title">
+        <router-link class="title" to="/">
             {{$t("appName")}}
+        </router-link>
+        <div class="app-bar__menu">
+          <AppMenu :menu="$menu" />
         </div>
-        <div style="flex:auto"></div>
         <div class="app-bar__buttons">
           <el-dropdown trigger="click" @command="changeLanguage">
             <el-tooltip :content="$t('buttons.language')" placement="bottom">
@@ -35,13 +36,18 @@
   
 </template>
 
-<script lang="ts">
+<script lang="tsx">
 import { Vue, Component, Prop } from "vue-property-decorator";
-import { CreateElement } from 'vue';
+import { CreateElement, VNode } from 'vue';
 import { State, Getter, Mutation} from "vuex-class";
-
+import menu, { MenuItem } from "@/config/menu";
 import lang from "@/config/lang.json";
-@Component
+import AppMenu from "@/components/AppMenu";
+@Component({
+  components: {
+    AppMenu
+  }
+})
 export default class AppBar extends Vue {
 
     @State
@@ -56,6 +62,12 @@ export default class AppBar extends Vue {
     }));
 
     expand = true;
+
+    $menu: MenuItem[] = [];
+
+    created() {
+      this.$menu = menu;
+    }
 
     changeLanguage(lang: string) {
       this.SET_LANGUAGE(lang);
@@ -75,12 +87,11 @@ export default class AppBar extends Vue {
   .app-bar__wrapper {
     height: 60px;
     width: 100%;
-    background-color: $primary-dark-3;
+    background-color: $primary-dark-5;
     display: flex;
     align-items: center;
     padding-left: 16px;
     padding-right: 16px;
-    color: white;
   }
 
   img.logo {
@@ -90,6 +101,30 @@ export default class AppBar extends Vue {
   .title {
     margin-left: 16px;
     font-size: 24px;
+    color: white;
+    text-decoration: none;
+  }
+  .app-bar__menu {
+    margin-left: 16px;
+    margin-right: 16px;
+    flex:auto;
+    .el-menu {
+      border-bottom: none;
+      background-color: transparent !important;
+      > .el-submenu .el-submenu__title,
+      > .el-menu-item {
+        display: flex;
+        align-items: center;
+        i {
+          color: unset;
+          margin-right: 5px;
+          width: 24px;
+          text-align: center;
+          font-size: 16px;
+          vertical-align: middle;
+        }
+      }
+    }
   }
   .app-bar__buttons {
     display: flex;
@@ -102,12 +137,12 @@ export default class AppBar extends Vue {
 
   .arrow {
     position: absolute;
-    bottom: -16px;
+    bottom: -18px;
     left: calc(50% - 20px);
-    height: 16px;
-    width: 40px;
+    height: 18px;
+    width: 60px;
 
-    background: $primary-dark-1;
+    background: $primary-dark-5;
     text-align: center;
     font-size: 12px;
     border-radius: 0 0 5px 5px;

@@ -2,6 +2,8 @@
 
 body {
   margin: 0;
+  background-color: $primary-dark-7;
+  color: white;
   > div#app {
     height: 100vh;
     > div {

@@ -14,7 +14,6 @@
 
 <script lang="ts">
 import { Vue, Component, Prop } from "vue-property-decorator";
-import { CreateElement } from 'vue';
 
 import AppBar from "./AppBar.vue";
 @Component({

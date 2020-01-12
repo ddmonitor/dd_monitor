@@ -10,12 +10,18 @@ const routes: RouteConfig[] = [
     component: Layout,
     children: [
       {
-        path: '/',
-        name: 'index',
-        // route level code-splitting
-        // this generates a separate chunk (about.[hash].js) for this route
-        // which is lazy-loaded when the route is visited.
-        component: () => import(/* webpackChunkName: "views" */ '@/views/Home.vue')
+        path: 'home',
+        component: () => import(/* webpackChunkName: "views" */ '@/views/Home.vue'),
+        children: [
+          {
+            path: 't3_1',
+            name: 'template3_1',
+            // route level code-splitting
+            // this generates a separate chunk (about.[hash].js) for this route
+            // which is lazy-loaded when the route is visited.
+            component: () => import(/* webpackChunkName: "views" */ '@/views/template/t3_1.vue')
+          }
+        ]
       }
     ]
   },
