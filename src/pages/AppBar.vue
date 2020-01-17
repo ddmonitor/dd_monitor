@@ -10,6 +10,23 @@
           <AppMenu :menu="$menu" />
         </div>
         <div class="app-bar__buttons">
+          <template>
+            <el-tooltip v-if="scriptActive"
+              :content="$t('buttons.script_active')" 
+              placement="bottom">
+              <span class="el-button el-button--small is-circle" >
+                <i class="fa fa-link"></i>
+              </span>
+            </el-tooltip>
+            <el-tooltip v-else
+              :content="$t('buttons.script_offline')" 
+              placement="bottom">
+              <span class="el-button el-button--small is-circle" >
+                <i class="fa fa-link" style="color: red;"></i>
+              </span>
+            </el-tooltip>
+          </template>
+
           <el-dropdown trigger="click" @command="changeLanguage">
             <el-tooltip :content="$t('buttons.language')" placement="bottom">
               <span class="el-button el-button--small is-round" >
@@ -37,12 +54,16 @@
 </template>
 
 <script lang="tsx">
-import { Vue, Component, Prop } from "vue-property-decorator";
+import { Vue, Component, Prop, Watch } from "vue-property-decorator";
 import { CreateElement, VNode } from 'vue';
 import { State, Getter, Mutation} from "vuex-class";
 import menu, { MenuItem } from "@/config/menu";
 import lang from "@/config/lang.json";
 import AppMenu from "@/components/AppMenu";
+import { StoreBinding } from '@/util/vuex';
+import { addDOMListenerOnce } from '@/util/event';
+import { ComponentMessageEvent } from '../types/message/message';
+import { Route } from 'vue-router';
 @Component({
   components: {
     AppMenu
@@ -50,11 +71,11 @@ import AppMenu from "@/components/AppMenu";
 })
 export default class AppBar extends Vue {
 
-    @State
-    readonly language!: string;
+    @StoreBinding("SET_LANGUAGE")
+    language!: string;
 
-    @Mutation
-    SET_LANGUAGE!: (lang: string) => void;
+    @StoreBinding("TOGGLE_SCRIPT_STATE", "isScriptActive")
+    scriptActive!: boolean;
 
     languages = lang.mapItem((v, k) => ({
       label: v,
@@ -69,12 +90,28 @@ export default class AppBar extends Vue {
       this.$menu = menu;
     }
 
+    mounted() {
+      addDOMListenerOnce(this, "message", this.onMessage);
+    }
+
     changeLanguage(lang: string) {
-      this.SET_LANGUAGE(lang);
+      this.language = lang
+    }
+
+    @Watch("$route")
+    onRouteChange(v: Route, ov: Route) {
+      console.log(v, ov);
+      this.scriptActive = false;
     }
 
     toggleExpand() {
       this.expand = !this.expand;
+    }
+
+    onMessage(e: ComponentMessageEvent) {
+      if (e.data.type === "M_SCRIPT_INIT") {
+        this.scriptActive = true;
+      }
     }
 }
 </script>
@@ -130,9 +167,14 @@ export default class AppBar extends Vue {
     display: flex;
     justify-content: space-between;
     .el-button {
+      height: 32px;
       background: none;
       color: white;
     }   
+    > * + * {
+      margin-left: 8px;
+    }
+
   }
 
   .arrow {

@@ -2,7 +2,6 @@ import "array-proto-ext";
 import 'reflect-metadata';
 
 import Vue from 'vue';
-
 import './plugins/axios';
 import './plugins/element';
 import i18n from './plugins/i18n';

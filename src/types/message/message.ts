@@ -1,4 +1,6 @@
 export type Messages =
+    "M_INIT" |
+    "M_SCRIPT_INIT" |
     "M_OPEN_U_LINK" |
     "M_UNKNOWN"
     ;
