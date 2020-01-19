@@ -4,7 +4,7 @@
   "buttons": {
     "language": "语言",
     "script_active": "脚本已激活",
-    "script_offline": "脚本已断开"
+    "script_offline": "脚本已断开，点击安装脚本"
   },
   "menus": {
     "switch_template": "切换模板",

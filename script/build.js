@@ -2,14 +2,19 @@ const package = require("./package.json");
 const config = require("./webpack.config");
 const webpack = require("webpack");
 const fs = require("fs");
+const path = require("path");
 const chalk = require('chalk');
+
+
 
 async function build() {
     try {
+        const outputName = config.output.filename;
         console.time();
         console.log("Building...");
 
         // webpack
+        console.log("Webpack...");
         config.mode = "production";
         await new Promise((resolve, reject) => {
             webpack(config).run((err, s) => {
@@ -36,7 +41,8 @@ async function build() {
         package.version = v.join(".");
 
         // add user script header
-        const output = fs.readFileSync("./dist/index.js");
+        console.log("Add userscript header...");
+        const output = fs.readFileSync("../public/" + outputName);
         const code = 
 `// ==UserScript==
 // @name         DD Monitor Helper
@@ -47,11 +53,17 @@ async function build() {
 // @require      https://cdn.bootcss.com/lodash.js/4.17.15/lodash.min.js
 // @match        *://schedule.hololive.tv/simple
 // @match        *://live.bilibili.com/*
+// @match        *://localhost:8080/*
+// @match        *://ddmonitor.github.io/*
 // @grant        GM_xmlhttpRequest
 // ==/UserScript==
 
 `       + output.toString();
-        fs.writeFileSync("./dist/index.js", code);
+        
+        
+        fs.writeFileSync("../public/" + outputName, code);
+
+        console.log("Update package.json...");
         fs.writeFileSync("./package.json", JSON.stringify(package, null, 2));
 
         console.log(chalk.green("Build SUCCESS"));

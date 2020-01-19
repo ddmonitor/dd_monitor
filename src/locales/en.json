@@ -2,11 +2,13 @@
   "appName": "DD Monitor",
   "empty": "No data available",
   "buttons": {
-    "language": "language"
+    "language": "Language",
+    "script_active": "The script is active",
+    "script_offline": "The script is inactive.Click to install"
   },
   "menus": {
-    "switch_template": "switch template",
-    "template_manage": "template manage",
-    "about": "about"
+    "switch_template": "Switch Template",
+    "template_manage": "Template Manage",
+    "about": "About"
   }
 }

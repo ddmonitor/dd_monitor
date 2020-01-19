@@ -11,18 +11,12 @@
         </div>
         <div class="app-bar__buttons">
           <template>
-            <el-tooltip v-if="scriptActive"
-              :content="$t('buttons.script_active')" 
+            <el-tooltip 
+              :content="scriptActive?$t('buttons.script_active'):$t('buttons.script_offline')" 
               placement="bottom">
-              <span class="el-button el-button--small is-circle" >
-                <i class="fa fa-link"></i>
-              </span>
-            </el-tooltip>
-            <el-tooltip v-else
-              :content="$t('buttons.script_offline')" 
-              placement="bottom">
-              <span class="el-button el-button--small is-circle" >
-                <i class="fa fa-link" style="color: red;"></i>
+              <span class="el-button el-button--small is-circle" @click="installScript">
+                <i class="fa fa-link" v-if="scriptActive"></i>
+                <i class="fa fa-link" v-else style="color: red;"></i>
               </span>
             </el-tooltip>
           </template>
@@ -98,14 +92,12 @@ export default class AppBar extends Vue {
       this.language = lang
     }
 
-    @Watch("$route")
-    onRouteChange(v: Route, ov: Route) {
-      console.log(v, ov);
-      this.scriptActive = false;
-    }
-
     toggleExpand() {
       this.expand = !this.expand;
+    }
+
+    installScript() {
+      window.open("/ddhelper.user.js");
     }
 
     onMessage(e: ComponentMessageEvent) {

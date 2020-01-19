@@ -23,8 +23,8 @@ module.exports = {
         "lodash": "_"
     },
     output: {
-        filename: 'index.js',
-        path: path.resolve(__dirname, 'dist')
+        filename: 'ddhelper.user.js',
+        path: path.resolve(__dirname, '../public')
     },
     plugins: [
         new webpack.BannerPlugin({
@@ -38,6 +38,8 @@ module.exports = {
 // @require      https://cdn.bootcss.com/lodash.js/4.17.15/lodash.min.js
 // @match        *://schedule.hololive.tv/simple
 // @match        *://live.bilibili.com/*
+// @match        *://localhost:8080/*
+// @match        *://ddmonitor.github.io/*
 // @grant        GM_xmlhttpRequest
 // ==/UserScript==
 

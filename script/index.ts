@@ -42,8 +42,18 @@ function register() {
             }, "*");
             console.debug(ctx.parentWindow);
         }
+    } else if (["localhost:8080", "ddmonitor.github.io"].includes(unsafeWindow.location.host)) {
+        if (!unsafeWindow.$name) {
+            ctx.name = _.uniqueId("host_");
+            unsafeWindow.$name = ctx.name;
+            ctx.parentWindow = unsafeWindow;
+            console.log(`DMH: host '${ctx.name}' registered`);
 
-
+            ctx.parentWindow.postMessage({
+                type: "M_SCRIPT_INIT",
+                source: ctx.name
+            }, "*");
+        }
     }
 }
 
