@@ -10,17 +10,22 @@
           <AppMenu :menu="$menu" />
         </div>
         <div class="app-bar__buttons">
-          <template>
-            <el-tooltip 
-              :content="scriptActive?$t('buttons.script_active'):$t('buttons.script_offline')" 
-              placement="bottom">
-              <span class="el-button el-button--small is-circle" @click="installScript">
-                <i class="fa fa-link" v-if="scriptActive"></i>
-                <i class="fa fa-link" v-else style="color: red;"></i>
-              </span>
-            </el-tooltip>
-          </template>
+          <el-tooltip 
+            content="GitHub" 
+            placement="bottom">
+            <el-button size="small" circle icon="fab fa-github" @click="openGithub">
+            </el-button>
+          </el-tooltip>
 
+          <el-tooltip 
+            :content="scriptActive?$t('buttons.script_active'):$t('buttons.script_offline')" 
+            placement="bottom">
+            <el-button size="small" circle  @click="installScript">
+              <i class="fa fa-link" v-if="scriptActive"></i>
+              <i class="fa fa-link" v-else style="color: red;"></i>
+            </el-button>
+          </el-tooltip>
+          
           <el-dropdown trigger="click" @command="changeLanguage">
             <el-tooltip :content="$t('buttons.language')" placement="bottom">
               <span class="el-button el-button--small is-round" >
@@ -56,7 +61,7 @@ import lang from "@/config/lang.json";
 import AppMenu from "@/components/AppMenu";
 import { StoreBinding } from '@/util/vuex';
 import { addDOMListenerOnce } from '@/util/event';
-import { ComponentMessageEvent } from '../types/message/message';
+import { ComponentMessageEvent } from '@/types/message/message';
 import { Route } from 'vue-router';
 @Component({
   components: {
@@ -98,6 +103,10 @@ export default class AppBar extends Vue {
 
     installScript() {
       window.open("/ddhelper.user.js");
+    }
+
+    openGithub() {
+      window.open("https://github.com/ddmonitor/dd_monitor");
     }
 
     onMessage(e: ComponentMessageEvent) {

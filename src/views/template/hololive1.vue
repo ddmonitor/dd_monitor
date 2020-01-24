@@ -3,15 +3,15 @@
     <table class="t t3-1">
       <tr>
         <td rowspan="2" style="height:100%;width:30%">
-          <el-card>
+          <div>
             <HoloSchedule />
-          </el-card>
+          </div>
         </td>
-        <td><el-card><YoutubeVideo :id="ids[0]" /></el-card></td>
+        <td><div><YoutubeVideo :id="ids[0]" /></div></td>
       </tr>
       <tr>
         <!-- <td></td> -->
-        <td><el-card><YoutubeVideo :id="ids[1]" /></el-card></td>
+        <td><div><YoutubeVideo :id="ids[1]" /></div></td>
       </tr>
     </table>
   </DWrap>
@@ -21,8 +21,20 @@
 import { Component, Vue } from 'vue-property-decorator'
 import { addDOMListenerOnce } from "@/util/event";
 import { ComponentMessageEvent } from "@/types/message/message";
+import { Meta, TemplateMeta } from '@/util/vue';
 @Component
-export default class t3_1 extends Vue {
+export default class hololive1 extends Vue {
+
+  @Meta({
+    name: "hololive schedule",
+    category: "hololive",
+    description: "hololive schedule with 2 Youtube video windows.",
+    path: "hololive1",
+    icon: "/img/template/hololive.webp",
+    mode: "standard"
+  })
+  metadata!: TemplateMeta;
+
   ids = ["", ""];
   current = 0;
 
@@ -52,15 +64,10 @@ export default class t3_1 extends Vue {
     padding: 8px;
     width: 50%;
     height: 50%;
-    > .el-card {
+    > div {
       background-color: rgba(255,255,255,0.8);
       height: 100%;
       width: 100%;
-      > .el-card__body {
-        padding: 0;
-        height: 100%;
-        width: 100%;
-      }
     }
   }
 }

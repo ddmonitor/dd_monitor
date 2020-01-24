@@ -1,6 +1,7 @@
 {
   "appName": "DD大屏",
   "empty": "暂无数据",
+  "template": "模板",
   "buttons": {
     "language": "语言",
     "script_active": "脚本已激活",

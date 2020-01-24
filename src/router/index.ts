@@ -1,8 +1,12 @@
 import Vue from 'vue'
 import VueRouter, { RouteConfig } from 'vue-router'
 import Layout from "@/pages/Layout.vue";
+import { getOptions, TemplateMeta } from '@/util/vue';
+import { __importDefault } from "tslib";
 
-Vue.use(VueRouter)
+import templates from "./template";
+Vue.use(VueRouter);
+
 
 const routes: RouteConfig[] = [
   {
@@ -10,25 +14,20 @@ const routes: RouteConfig[] = [
     component: Layout,
     children: [
       {
-        path: 'home',
-        component: () => import(/* webpackChunkName: "views" */ '@/views/Home.vue'),
-        children: [
-          {
-            path: 't3_1',
-            name: 'template3_1',
-            // route level code-splitting
-            // this generates a separate chunk (about.[hash].js) for this route
-            // which is lazy-loaded when the route is visited.
-            component: () => import(/* webpackChunkName: "views" */ '@/views/template/t3_1.vue')
-          }
-        ]
-      }
+        path: '/',
+        name: "home",
+        // route level code-splitting
+        // this generates a separate chunk (views.[hash].js) for this route
+        // which is lazy-loaded when the route is visited.
+        component: () => import(/* webpackChunkName: "views" */ '@/views/Home.vue')
+      },
+      ...templates
     ]
   },
 ]
 
 const router = new VueRouter({
   routes
-})
+});
 
-export default router
+export default router;

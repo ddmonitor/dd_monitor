@@ -43,11 +43,11 @@ export class MenuItem implements TreeItem<MenuData> {
 }
 
 export default [
-    new MenuItem("m1", "switch_template").$icon("fa fa-toggle-on").$children([
-        new MenuItem("m1_1", "hololive#1-2v").$data({
-            route: "/home/t3_1"
-        })
-    ]),
+    // new MenuItem("m1", "switch_template").$icon("fa fa-toggle-on").$children([
+    //     new MenuItem("m1_1", "hololive#1-2v").$data({
+    //         route: "/home/t3_1"
+    //     })
+    // ]),
     new MenuItem("m2", "template_manage").$icon("fa fa-cog"),
     new MenuItem("m3", "about").$icon("fa fa-info")
 ];

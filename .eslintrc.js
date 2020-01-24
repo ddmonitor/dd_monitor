@@ -15,7 +15,8 @@ module.exports = {
     'vue/no-unused-components': 'off',
     'vue/no-side-effects-in-computed-properties': 'warn',
     'vue/no-unused-vars': 'warn',
-    'vue/this-in-template': 'warn'
+    'vue/this-in-template': 'warn',
+    'no-empty': 'warn'
   },
   parserOptions: {
     parser: '@typescript-eslint/parser'

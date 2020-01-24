@@ -10,6 +10,7 @@ import router from './router';
 import store from './store';
 import './registerServiceWorker';
 
+import "@fortawesome/fontawesome-free/css/all.css";
 import "@/styles/main.scss";
 import "@/components/index";
 
@@ -23,5 +24,7 @@ import App from './App.vue';
   render: h => h(App)
 }).$mount('#app');
 
+
+(window as any).__NEPTUNE_IS_MY_WAIFU__ = '{"code": 114514, "msg": "I♂don\'t♂Like♂Van♂游戏" }';
 
 
