@@ -68,6 +68,7 @@ export default class Home extends Vue {
   height: 100%;
   overflow-y: auto;
   width: 100%;
+  padding: 20px;
   color: white;
   > div {
     width: 75%;
