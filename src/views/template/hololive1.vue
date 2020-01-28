@@ -28,7 +28,7 @@ export default class hololive1 extends Vue {
   @Meta({
     name: "hololive schedule",
     category: "hololive",
-    description: "hololive schedule with 2 Youtube video windows.",
+    description: "Hololive schedule with 2 Youtube stream windows.",
     path: "hololive1",
     icon: "/img/template/hololive.webp",
     mode: "standard"

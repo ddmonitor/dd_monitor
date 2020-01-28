@@ -1,6 +1,13 @@
 {
   "appName": "DDモニター",
   "empty": "データなし",
+  "template": "テンプレート",
+  "template_modes": {
+    "standard": "標準",
+    "window": "ウィンドウ",
+    "mobile": "モバイル",
+    "common": "通常"
+  },
   "buttons": {
     "language": "言語"
   }

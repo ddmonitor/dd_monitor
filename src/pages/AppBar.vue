@@ -73,7 +73,7 @@ export default class AppBar extends Vue {
     @StoreBinding("SET_LANGUAGE")
     language!: string;
 
-    @StoreBinding("TOGGLE_SCRIPT_STATE", "isScriptActive")
+    @State("isScriptActive")
     scriptActive!: boolean;
 
     languages = lang.mapItem((v, k) => ({
@@ -87,10 +87,6 @@ export default class AppBar extends Vue {
 
     created() {
       this.$menu = menu;
-    }
-
-    mounted() {
-      addDOMListenerOnce(this, "message", this.onMessage);
     }
 
     changeLanguage(lang: string) {
@@ -109,11 +105,7 @@ export default class AppBar extends Vue {
       window.open("https://github.com/ddmonitor/dd_monitor");
     }
 
-    onMessage(e: ComponentMessageEvent) {
-      if (e.data.type === "M_SCRIPT_INIT") {
-        this.scriptActive = true;
-      }
-    }
+
 }
 </script>
 

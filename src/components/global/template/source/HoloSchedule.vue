@@ -19,7 +19,7 @@
 import { Vue, Component, Prop, Ref } from "vue-property-decorator";
 import { CreateElement } from 'vue';
 
-@Reflect.metadata("component:category", "schedule")
+@Reflect.metadata("component:category", "source")
 @Component
 export default class HoloSchedule extends Vue {
   @Ref()

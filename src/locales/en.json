@@ -1,6 +1,13 @@
 {
   "appName": "DD Monitor",
   "empty": "No data available",
+  "template": "template",
+  "template_modes": {
+    "standard": "standard",
+    "window": "window",
+    "mobile": "mobile",
+    "common": "common"
+  },
   "buttons": {
     "language": "Language",
     "script_active": "The script is active",

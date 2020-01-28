@@ -6,4 +6,4 @@ export type TemplateMode =
     "window" |
     /** 移动端模板，类似标准模板，不过采用流式布局，强调纵向可滚动性 */
     "mobile" | 
-    "default";
+    "common";

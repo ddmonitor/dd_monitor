@@ -18,11 +18,11 @@ import { CreateElement } from 'vue';
 @Component
 export default class BVideo extends Vue {
     /** AV号 */
-    @Prop(String)
+    @Prop()
     aid!: string;
 
     /** 分P */
-    @Prop({ type: Number, default: 1 })
+    @Prop({ default: 1 })
     page!: number;
 
     get valid() {

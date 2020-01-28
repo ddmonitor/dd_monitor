@@ -25,6 +25,6 @@ import App from './App.vue';
 }).$mount('#app');
 
 
-(window as any).__NEPTUNE_IS_MY_WAIFU__ = '{"code": 114514, "msg": "I♂don\'t♂Like♂Van♂游戏" }';
+(window as any).__NEPTUNE_IS_MY_WAIFU__ = '{"code": 114514, "msg": "yagooのass♂hole" }';
 
 

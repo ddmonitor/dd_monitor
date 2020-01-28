@@ -1,7 +1,10 @@
 import _ from "lodash";
+
+export type InjectMode = "subwindow" | "top" | "all";
 export const ctx: {
     injects: {
         test: RegExp;
+        mode: InjectMode
         inject: () => void;
     }[],
     parentWindow: Window,
@@ -10,44 +13,52 @@ export const ctx: {
     injects: []
 } as any;
 
+export function $log(msg: string) {
+    console.log("%cDHM%c " + msg, 'background:#49c8f0;border-radius:5px;padding:5px;', '')
+}
+
 function init() {
     const injects = require.context("./injects", false, /[A-Za-z0-9-_]+\.ts$/);
     ctx.injects = injects
         .keys()
         .map(key => injects(key).default);
-    console.log("DMH: init");
+    $log("init");
 
     let url = window.location.href;
     for (const i of ctx.injects) {
         if (i.test.test(url)) {
             window.addEventListener("load", i.inject);
-            register();
+            register(i.mode);
             break;
         }
     }
 }
 
-function register() {
-    // 在iframe里面，而不是单独页面
-    if (unsafeWindow.parent !== unsafeWindow) {
-        if (!unsafeWindow.$name) {
-            ctx.name = _.uniqueId("subWindow_");
-            unsafeWindow.$name = ctx.name;
-            ctx.parentWindow = unsafeWindow.parent;
-            console.log(`DMH: iframe '${ctx.name}'(${unsafeWindow.document.title}) registered`);
+function register(mode: InjectMode) {
+    if (mode === "subwindow" || mode === "all") {
+        // 在iframe里面，而不是单独页面
+        if (unsafeWindow.parent !== unsafeWindow) {
+            if (!unsafeWindow.$name) {
+                ctx.name = _.uniqueId("subWindow_");
+                unsafeWindow.$name = ctx.name;
+                ctx.parentWindow = unsafeWindow.parent;
+                $log(`iframe '${ctx.name}'(${unsafeWindow.document.title}) registered`);
 
-            ctx.parentWindow.postMessage({
-                type: "M_SCRIPT_INIT",
-                source: ctx.name
-            }, "*");
-            console.debug(ctx.parentWindow);
+                ctx.parentWindow.postMessage({
+                    type: "M_SCRIPT_INIT",
+                    source: ctx.name
+                }, "*");
+                console.debug(ctx.parentWindow);
+            }
+            return;
         }
-    } else if (["localhost:8080", "ddmonitor.github.io"].includes(unsafeWindow.location.host)) {
+    }
+    if (mode === "top" || mode === "all") {
         if (!unsafeWindow.$name) {
-            ctx.name = _.uniqueId("host_");
+            ctx.name = _.uniqueId("top_");
             unsafeWindow.$name = ctx.name;
             ctx.parentWindow = unsafeWindow;
-            console.log(`DMH: host '${ctx.name}' registered`);
+            $log(`top '${ctx.name}'(${unsafeWindow.document.title}) registered`);
 
             ctx.parentWindow.postMessage({
                 type: "M_SCRIPT_INIT",
@@ -55,6 +66,9 @@ function register() {
             }, "*");
         }
     }
+
+    
+    
 }
 
 init();
