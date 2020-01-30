@@ -1,12 +1,13 @@
 <template>
   <DWrap class="d-valign">
-    <div class="d-valign">
-      <el-form style="width:75%">
+    <div class="d-valign" style="width:75%">
+      <el-form >
         <el-form-item>
           <el-input v-model="id" placeholder="请输入房间号"/>
         </el-form-item>
       </el-form>
       <BLive :roomid="id" style="height:auto" />
+      <YagooKoatsu style="margin-top:20px"/>
     </div>
   </DWrap>
 </template>

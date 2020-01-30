@@ -18,7 +18,8 @@
       "webpack-env",
       "webpack",
       "vue-tsx-support/enable-check",
-      "vue-tsx-support/options/allow-unknown-props"
+      "vue-tsx-support/options/allow-unknown-props",
+      "@moefe/vue-aplayer/types/aplayer"
     ],
     "paths": {
       "@/*": [

@@ -5,6 +5,7 @@ import Vue from 'vue';
 import './plugins/axios';
 import './plugins/element';
 import i18n from './plugins/i18n';
+import './plugins/audio';
 
 import router from './router';
 import store from './store';
