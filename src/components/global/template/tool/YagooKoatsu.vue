@@ -1,7 +1,7 @@
 <template>
   <div class="yagoo-koatsu">
     <div class="player-container">
-      <aplayer :audio="audio" ref="player" 
+      <aplayer :audio="audio" ref="player" :lrcType="3"
         @play="onPlay" @pause="onPause"/>
       <div class="visual">
         <div class="volume-bar">
@@ -15,7 +15,7 @@
           <div class="bg d-fill">
 
           </div>
-          <img class="d-fill" src="/img/yagoo.jpg" />
+          <img class="d-fill" src="/img/yagoo.png" />
         </div>
       </div>
     </div>
@@ -49,6 +49,7 @@ export default class YagooKoatsu extends Vue {
     artist: "hololive IDOL PROJECT",
     url: "/audio/sss.mp3",
     cover: "/img/sss.jpg",
+    lrc: "/sss.lrc.txt",
     theme: "#49c8f0"
   };
 
@@ -81,10 +82,17 @@ export default class YagooKoatsu extends Vue {
 
   beginRender() {
     this.renderId = requestAnimationFrame(this.beginRender);
-    let data = new Uint8Array(this.analyser.frequencyBinCount);
+    const count = this.analyser.frequencyBinCount; // 1024
+    let data = new Uint8Array(count);
     this.analyser.getByteTimeDomainData(data);
-    const v = data.reduce((s, v)=> s + v, 0) / data.length;
-    this.bar.style.width = (v / 255 * 100) + "%";
+    const block = 10;
+    const span = count / block;
+    // 切块后，取最中间两块的平均数
+    const middle2 = data.slice((block / 2 - 1) * span, block / 2 * span);
+    const v = middle2.reduce((s, v)=> s + v, 0) / middle2.length;
+    const p = (v / 255 * 100) + "%";
+    console.log(p)
+    this.bar.style.width = p;
   }
 
 }
@@ -93,16 +101,17 @@ export default class YagooKoatsu extends Vue {
 <style lang="scss">
 .yagoo-koatsu {
   width: 100%;
+  border-radius: 3px;
+  color: black;
+  background-color: white;
   .player-container {
     width: 100%;
-    height: 80px;
-    background-color: black;
-    color: white;
+    height: 96px;
     display: flex;
     align-items: center;
 
     .aplayer {
-      background-color: transparent;
+      box-shadow: none;
     }
 
     .visual {
@@ -116,10 +125,10 @@ export default class YagooKoatsu extends Vue {
         background: linear-gradient(to right, lime, 70%, yellow 90%, red);
         .bar {
           height: 100%;
-          background: black;
+          background: white;
           > span {
-            color: white;
             white-space: nowrap;
+            color: black;
           }
         }
         .space {
