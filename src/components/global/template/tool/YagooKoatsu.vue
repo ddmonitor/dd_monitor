@@ -5,7 +5,7 @@
         @play="onPlay" @pause="onPause"/>
       <div class="visual">
         <div class="volume-bar">
-          <div class="bar" ref="bar" style="width:100%;">
+          <div class="bar" ref="bar" style="width:50%;">
             <span>血压</span>
           </div>
           <div class="space">
@@ -82,17 +82,17 @@ export default class YagooKoatsu extends Vue {
 
   beginRender() {
     this.renderId = requestAnimationFrame(this.beginRender);
+
     const count = this.analyser.frequencyBinCount; // 1024
-    let data = new Uint8Array(count);
-    this.analyser.getByteTimeDomainData(data);
     const block = 10;
     const span = count / block;
+
+    let data = new Uint8Array(count);
+    this.analyser.getByteTimeDomainData(data);
     // 切块后，取最中间两块的平均数
     const middle2 = data.slice((block / 2 - 1) * span, block / 2 * span);
     const v = middle2.reduce((s, v)=> s + v, 0) / middle2.length;
-    const p = (v / 255 * 100) + "%";
-    console.log(p)
-    this.bar.style.width = p;
+    this.bar.style.width = (v / 255 * 100) + "%";
   }
 
 }
@@ -112,6 +112,8 @@ export default class YagooKoatsu extends Vue {
 
     .aplayer {
       box-shadow: none;
+      flex: auto;
+      max-width: 60%;
     }
 
     .visual {
@@ -143,8 +145,8 @@ export default class YagooKoatsu extends Vue {
         margin-left: 8px;
         margin-right: 8px;
         position: relative;
-        height: 64px;
-        width: 64px;
+        height: 80px;
+        width: 80px;
         img {
           display: block;
         }

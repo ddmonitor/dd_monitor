@@ -56,6 +56,7 @@ async function build() {
 // @match        *://localhost:8080/*
 // @match        *://ddmonitor.github.io/*
 // @grant        GM_xmlhttpRequest
+// @connect      bilibili.com
 // ==/UserScript==
 
 `       + output.toString();

@@ -8,9 +8,6 @@ $--color-primary: #49c8f0;
 /* icon font path, required */
 $--font-path: '~element-ui/lib/theme-chalk/fonts';
 
-@import "~element-ui/packages/theme-chalk/src/index";
-
-
 $primary-color:   $--color-primary;
 
 $primary-dark-9:  mix(black, $primary-color, 90%);
@@ -24,5 +21,28 @@ $primary-light-3: mix(white, $primary-color, 30%);
 $primary-light-5: mix(white, $primary-color, 50%);
 $primary-light-7: mix(white, $primary-color, 70%);
 $primary-light-9: mix(white, $primary-color, 90%);
+
+$basic-font-color: #E0E4EC;
+
+// $--color-text-primary: #C0C4CC;
+
+
+$--tree-node-hover-background-color: $primary-dark-5;
+$--tree-font-color: $basic-font-color;
+$--tree-expand-icon-color: $basic-font-color;
+
+$--pagination-background-color: transparent;
+$--pagination-font-color: $basic-font-color;
+$--pagination-button-color: $basic-font-color;
+
+$--table-font-color: $basic-font-color;
+$--table-header-font-color: white;
+$--table-row-hover-background-color: $primary-dark-5;
+$--table-header-background-color: $primary-dark-5;
+$--table-current-row-background-color: $primary-dark-3;
+$--table-border-color: rgba(255, 255, 255, 0.4);
+
+
+@import "~element-ui/packages/theme-chalk/src/index";
 
 

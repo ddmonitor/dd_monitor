@@ -13,7 +13,7 @@
           <el-col v-for="t in g" :key="t.name"
             :md="8" :sm="12" :xs="24" >
             <CornerTag :type="modeColorMap[t.meta.mode]">
-              <el-card @click.native="selectTemplate(t)">
+              <el-card @click.native="selectTemplate(t)" class="select">
                 <div class="img-wrapper">
                   <img v-if="t.meta.icon" :src="t.meta.icon"/>
                 </div>
@@ -85,14 +85,6 @@ export default class Home extends Vue {
   .template-container {
     .el-col {
       .el-card {
-        background-color: $primary-dark-7;
-        border-color: rgba(255, 255, 255, 0.4);
-        color: white;
-        box-shadow: 0 2px 12px 0 rgba(255, 255, 255, 0.1);
-        &:hover, &:focus {
-          background-color: $primary-dark-5;
-          cursor: pointer;
-        }
         .el-card__body {
           display: flex;
           flex-direction: column;

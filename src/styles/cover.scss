@@ -3,3 +3,61 @@
   background-color: $primary-light-7;
   color: $primary-color;
 }
+
+.el-card.is-always-shadow {
+  background-color: $primary-dark-7;
+  border-color: rgba(255, 255, 255, 0.4);
+  color: white;
+  box-shadow: 0 2px 12px 0 rgba(255, 255, 255, 0.1);
+  > .el-card__body {
+    height: 100%;
+    width: 100%;
+  }
+
+  &.select {
+    &:hover, &:focus {
+      background-color: $primary-dark-5;
+      cursor: pointer;
+    }
+  }
+}
+
+.el-tree {
+  height: 100%;
+  background-color: $primary-dark-7 !important;
+  .el-tree-node__content {
+    height: auto;
+    max-height: 40px;
+    > .el-tree-node__expand-icon {
+      font-size: 18px;
+    }
+  }
+  
+}
+
+.el-pagination button:disabled {
+  background-color: $primary-dark-7 !important;
+}
+
+.el-table {
+  background-color: $primary-dark-7 !important;
+  tr {
+    background-color: $primary-dark-7 !important;
+  }
+}
+
+.el-loading-mask {
+  background-color: rgba(0,0,0,0.9) !important;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+  background: $primary-dark-7;
+}
+
+::-webkit-scrollbar-thumb {
+  height: 8px;
+  border-radius: 4px;
+  background: $primary-light-5;
+}
