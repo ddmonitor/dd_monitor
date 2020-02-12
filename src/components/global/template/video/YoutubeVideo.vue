@@ -4,7 +4,7 @@
             border="0" frameborder="no" framespacing="0" 
             allowfullscreen="true"> 
         </iframe>
-        <div v-else class="d-valign" style="height: 100%;">
+        <div v-else class="d-flex-v" style="height: 100%;">
             <h3>{{$t("empty")}}</h3>
         </div>
     </div>

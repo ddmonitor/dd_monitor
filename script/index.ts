@@ -43,7 +43,7 @@ function register(mode: InjectMode) {
                 unsafeWindow.$name = ctx.name;
                 ctx.parentWindow = unsafeWindow.parent;
                 $log(`iframe '${ctx.name}'(${unsafeWindow.document.title}) registered`);
-
+                unsafeWindow.$GM_XHR = GM_xmlhttpRequest;
                 ctx.parentWindow.postMessage({
                     type: "M_SCRIPT_INIT",
                     source: ctx.name
@@ -59,7 +59,7 @@ function register(mode: InjectMode) {
             unsafeWindow.$name = ctx.name;
             ctx.parentWindow = unsafeWindow;
             $log(`top '${ctx.name}'(${unsafeWindow.document.title}) registered`);
-
+            unsafeWindow.$GM_XHR = GM_xmlhttpRequest;
             ctx.parentWindow.postMessage({
                 type: "M_SCRIPT_INIT",
                 source: ctx.name

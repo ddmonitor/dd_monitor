@@ -9,6 +9,8 @@
     "common": "common"
   },
   "buttons": {
+    "login": "Log in",
+    "bili_not_login": "Bilibili is not logged in",
     "language": "Language",
     "script_active": "The script is active",
     "script_offline": "The script is inactive.Click to install"

@@ -9,6 +9,7 @@ $--color-primary: #49c8f0;
 $--font-path: '~element-ui/lib/theme-chalk/fonts';
 
 $primary-color:   $--color-primary;
+$accent-color: #edf047;
 
 $primary-dark-9:  mix(black, $primary-color, 90%);
 $primary-dark-7:  mix(black, $primary-color, 70%);
@@ -39,7 +40,7 @@ $--table-font-color: $basic-font-color;
 $--table-header-font-color: white;
 $--table-row-hover-background-color: $primary-dark-5;
 $--table-header-background-color: $primary-dark-5;
-$--table-current-row-background-color: $primary-dark-3;
+$--table-current-row-background-color: $primary-dark-5;
 $--table-border-color: rgba(255, 255, 255, 0.4);
 
 

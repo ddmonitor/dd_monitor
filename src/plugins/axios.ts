@@ -20,8 +20,9 @@ const _axios = axios.create(config);
 _axios.interceptors.request.use(
   (cfg) => {
     if (process.env.NODE_ENV === "production") {
+      debugger;
       if (cfg.url && cfg.url.startsWith("/api")) {
-        cfg.url.replace(/^\/api/, "");
+        cfg.url = cfg.url.replace(/^\/api/, "");
       }
     }
     // Do something before request is sent

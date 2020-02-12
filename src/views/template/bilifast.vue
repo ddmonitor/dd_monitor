@@ -11,13 +11,14 @@
           </el-tree>
         </el-card>
       </div>
-      <el-card class="right">
-        <div class="d-valign container">
-          <el-form >
+      
+      <div class="right">
+        <div class="d-flex-v container">
+          <!-- <el-form >
             <el-form-item>
-              <el-input v-model="id" placeholder="请输入房间号"/>
+              <el-input v-model.number="id" placeholder="请输入房间号"/>
             </el-form-item>
-          </el-form>
+          </el-form> -->
 
           <div class="vtb-select" >
             <div class="table-wrapper">
@@ -50,12 +51,12 @@
             </el-pagination>
           </div>
 
-          <div style="height:100px" v-loading="loading">
-            <BLive :roomid="id"  />
+          <div>
+            <BLive :uid="currentUid" />
           </div>
           <YagooKoatsu style="margin-top:20px;"/>
         </div>
-      </el-card>
+      </div>
     </div>
   </DWrap>
 </template>
@@ -65,10 +66,10 @@ import { Component, Vue, Watch } from 'vue-property-decorator'
 import { addDOMListenerOnce } from "@/util/event";
 import { Meta, TemplateMeta } from '@/util/vue';
 import { getList, getDetail, query } from '@/api/vtb';
-import { getLiveInfo } from '@/api/bili';
 import { getTree } from '@/api/group';
 import { BasicTree } from '@/types/common/Tree';
 import { ComponentMessageEvent } from "@/types/message/message";
+import { Dictionary } from 'array-proto-ext';
 @Component
 export default class hololivebili extends Vue {
 
@@ -90,17 +91,19 @@ export default class hololivebili extends Vue {
     total: 1
   };
   currentGroup: BasicTree | null = null;
-  id = "";
+  id = 0;
   loading = false;
+  currentUid = 0;
 
   @Watch("currentGroup")
   groupChange() {
     if (this.currentGroup) {
-      this.loadData(this.currentGroup.id);
+      this.loadData({ groupId:this.currentGroup!.id });
     }
   }
   mounted() {
     this.loadTree();
+    // this.loadData();
   }
 
   async loadTree() {
@@ -109,13 +112,11 @@ export default class hololivebili extends Vue {
   }
 
   currentChange(current: number) {
-    this.loadData(this.currentGroup!.id, current);
+    this.loadData({ groupId:this.currentGroup!.id }, current);
   }
 
-  async loadData(groupId: number, current = 1) {
-    const res = await query({
-      groupId
-    }, current, this.page.size);
+  async loadData(params: Dictionary<any> = {}, current = 1) {
+    const res = await query(params, current, this.page.size);
     this.page.current = res.data.data.current;
     this.page.total = res.data.data.total;
     this.data = res.data.data.data;
@@ -125,17 +126,10 @@ export default class hololivebili extends Vue {
     this.currentGroup = data;
   }
 
-  async selectVtb(row: any) {
-    try {
-      this.loading = true;
-      const res = await getLiveInfo(row.biliUid);
-      this.id = res.data.roomid + "";
-    } catch (error) {
-      this.$message.warning(error.message);
-    } finally {
-      this.loading = false;
-    }
+  selectVtb(row: any) {
+    this.currentUid = row.biliUid;
   }
+
 }
 </script>
 <style lang="scss">
@@ -146,7 +140,7 @@ export default class hololivebili extends Vue {
     height: 100%;
   }
   .left {
-    width: 300px;
+    width: 360px;
     overflow-y: auto;
     .el-card {
       height: 100%;
@@ -165,7 +159,7 @@ export default class hololivebili extends Vue {
   .right {
     margin-left: 16px;
     flex: auto;
-    .d-valign.container {
+    .d-flex-v.container {
       height: 100%;
       align-items: stretch;
     }

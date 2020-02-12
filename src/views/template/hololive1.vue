@@ -20,7 +20,7 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
 import { addDOMListenerOnce } from "@/util/event";
-import { ComponentMessageEvent } from "@/types/message/message";
+import { ScriptMessageEvent } from "@/types/message/message";
 import { Meta, TemplateMeta } from '@/util/vue';
 @Component
 export default class hololive1 extends Vue {
@@ -42,7 +42,7 @@ export default class hololive1 extends Vue {
     addDOMListenerOnce(this, "message", this.onMessage);
   }
 
-  onMessage(e: ComponentMessageEvent) {
+  onMessage(e: ScriptMessageEvent<"M_OPEN_U_LINK">) {
     if (e.data.type === "M_OPEN_U_LINK") {
       const url = e.data.data.url;
       const m = /\?v=([A-Za-z0-9-_]+)$/.exec(url);

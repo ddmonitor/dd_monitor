@@ -1,6 +1,6 @@
 {
   "name": "dd_monitor",
-  "version": "0.2.3",
+  "version": "0.3.5",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
@@ -12,7 +12,9 @@
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.12.0",
     "@moefe/vue-aplayer": "^2.0.0-beta.5",
+    "@smallwei/avue": "^2.3.9",
     "array-proto-ext": "^1.4.3",
+    "avue-types": "^0.1.5",
     "axios": "^0.18.0",
     "core-js": "^3.4.3",
     "element-ui": "^2.4.5",

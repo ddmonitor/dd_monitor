@@ -6,6 +6,7 @@ import './plugins/axios';
 import './plugins/element';
 import i18n from './plugins/i18n';
 import './plugins/audio';
+import './plugins/avue';
 
 import router from './router';
 import store from './store';

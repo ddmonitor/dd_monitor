@@ -6,10 +6,40 @@
         <router-link class="title" to="/">
             {{$t("appName")}}
         </router-link>
+        <div class="app-bar__version">
+          <span>{{version}}</span>
+        </div>
         <div class="app-bar__menu">
           <AppMenu :menu="$menu" />
         </div>
         <div class="app-bar__buttons">
+          <el-popover  placement="bottom" trigger="click">
+            <template slot="reference">
+              <el-avatar :size="32" :src="biliUser.face" style="cursor: pointer">
+                <img src="https://static.hdslb.com/images/akari.jpg"/>
+              </el-avatar>
+            </template>
+
+            <div>
+              <el-row>
+                <span style="font-size:18px;font-width:bold;">{{biliUser.uname}}</span>
+              </el-row>
+              <el-row v-if="biliUser.vipStatus"  type="flex" justify="center">
+                <div>
+                  <el-tag style="color:white" color="#fb7299" size="medium">大会员</el-tag>
+                </div>
+              </el-row>
+              <el-row>
+                <div v-if="!biliUser.isLogin" class="d-flex-v">
+                  <div>{{$t("buttons.bili_not_login")}}</div>
+                  <el-button size="small" type="primary" @click="biliLogin">
+                    {{$t("buttons.login")}}
+                  </el-button>
+                </div>
+              </el-row>
+            </div>
+          </el-popover>
+          
           <el-tooltip 
             content="GitHub" 
             placement="bottom">
@@ -63,6 +93,7 @@ import { StoreBinding } from '@/util/vuex';
 import { addDOMListenerOnce } from '@/util/event';
 import { ComponentMessageEvent } from '@/types/message/message';
 import { Route } from 'vue-router';
+import { checkLoginState } from "@/api/bili";
 @Component({
   components: {
     AppMenu
@@ -76,10 +107,15 @@ export default class AppBar extends Vue {
     @State("isScriptActive")
     scriptActive!: boolean;
 
+    @State
+    version!: string;
+
     languages = lang.mapItem((v, k) => ({
       label: v,
       value: k
     }));
+
+    biliUser: any = {};
 
     expand = true;
 
@@ -87,6 +123,24 @@ export default class AppBar extends Vue {
 
     created() {
       this.$menu = menu;
+    }
+
+    mounted() {
+      if (this.scriptActive) {
+        this.checkBiliLogin();
+      }
+    }
+
+    @Watch("scriptActive")
+    onScriptStateChange() {
+      if (this.scriptActive) {
+        this.checkBiliLogin();
+      }
+    }
+
+    async checkBiliLogin() {
+      const res = await checkLoginState();
+      this.biliUser = res.data;
     }
 
     changeLanguage(lang: string) {
@@ -103,6 +157,10 @@ export default class AppBar extends Vue {
 
     openGithub() {
       window.open("https://github.com/ddmonitor/dd_monitor");
+    }
+
+    biliLogin() {
+      window.open("https://passport.bilibili.com/login")!;
     }
 
 
@@ -133,6 +191,13 @@ export default class AppBar extends Vue {
     font-size: 24px;
     color: white;
     text-decoration: none;
+  }
+  .app-bar__version {
+    height: 40px;
+    display: flex;
+    align-items: flex-end;
+    color: $basic-font-color;
+    margin-left: 16px;
   }
   .app-bar__menu {
     margin-left: 16px;

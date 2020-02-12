@@ -3,6 +3,8 @@ import Vuex, { ModuleTree } from 'vuex';
 import { Dictionary } from 'array-proto-ext';
 import i18n from "@/plugins/i18n";
 import { setStore, getStore } from '@/util/vuex';
+import packageInfo from "@/../package.json";
+
 Vue.use(Vuex);
 
 function loadModules() {
@@ -33,7 +35,8 @@ const store = new Vuex.Store({
       document.title = i18n.t("appName") as string;
       return lang;
     })(),
-    isScriptActive: false
+    isScriptActive: false,
+    version: packageInfo.version as string
   },
   // SET_xxx    表示修改一个state
   // TOGGLE_xxx 表示修改一个boolean类型的state

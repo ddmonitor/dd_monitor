@@ -7,7 +7,7 @@
           <svg class="d-fill">
               <path class="triangle" :class="type" d="M0,0 L60,0 0,60 Z"/>
           </svg>
-          <span class="content d-valign">
+          <span class="content d-flex-v">
               <slot name="tag"></slot>
           </span>
       </div>
