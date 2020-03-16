@@ -1,6 +1,6 @@
 {
   "name": "dd_monitor_helper",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "description": "dd monitor helper user script",
   "private": true,
   "main": "index.js",

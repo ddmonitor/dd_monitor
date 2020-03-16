@@ -6,6 +6,7 @@
           <el-tree :data="tree" :props="{ label: 'name' }" node-key="id"
             @node-click="selectGroup">
             <span class="tree-node" slot-scope="{ data }">
+              <span>{{ data.code }} </span>
               <span>{{ data.name }}</span>
             </span>
           </el-tree>
