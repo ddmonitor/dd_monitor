@@ -3,6 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="referrer" content="never">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <link rel="icon" href="<%= BASE_URL %>favicon.ico">
     <title><%= htmlWebpackPlugin.options.title %></title>
@@ -11,7 +12,28 @@
     <noscript>
       <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
     </noscript>
-    <div id="app"></div>
+    <style>
+      body {
+        margin: 0;
+        background-color: #163c48;
+        color: white;
+      }
+      .splash-screen {
+        display: flex; flex-direction: column; justify-content: center; align-items: center;
+        height: 100vh; width: 100vw;
+        margin: 0; padding: 0;
+      }
+      .splash-screen img {
+        height: 20%; width: auto;
+      }
+    </style>
+
+    <div id="app">
+      <div class="splash-screen">
+        <img src="img/dd.png" />
+        <h3>Loading...</h3>
+      </div>
+    </div>
     <!-- built files will be auto injected -->
   </body>
 </html>
