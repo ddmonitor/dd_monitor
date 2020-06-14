@@ -19,6 +19,10 @@ module.exports = {
     'vue/no-side-effects-in-computed-properties': 'warn',
     'vue/no-unused-vars': 'warn',
     'vue/this-in-template': 'warn',
+    
+    '@typescript-eslint/no-var-requires': "off",
+    '@typescript-eslint/camelcase': "off",
+    '@typescript-eslint/class-name-casing': "warn",
     'no-empty': 'warn',
   }
 }

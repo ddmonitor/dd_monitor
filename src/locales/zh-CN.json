@@ -1,3 +1,23 @@
 {
-  "message": "hello i18n !!"
+  "appName": "DD大屏",
+  "empty": "暂无数据",
+  "template": "模板",
+  "template_modes": {
+    "standard": "标准",
+    "window": "窗口",
+    "mobile": "移动端",
+    "common": "通用"
+  },
+  "buttons": {
+    "login": "登录",
+    "bili_not_login": "尚未登录bilibili",
+    "language": "语言",
+    "script_active": "脚本已激活",
+    "script_offline": "脚本已断开，点击安装脚本"
+  },
+  "menus": {
+    "switch_template": "切换模板",
+    "template_manage": "模板管理",
+    "about": "关于"
+  }
 }

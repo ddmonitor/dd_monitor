@@ -1,21 +1,30 @@
 import Vue, { PluginObject } from 'vue';
-import axios from 'axios';
+import axios, { AxiosRequestConfig } from 'axios';
 
 // Full config:  https://github.com/axios/axios#request-config
 // axios.defaults.baseURL = process.env.baseURL || process.env.apiUrl || '';
 // axios.defaults.headers.common['Authorization'] = AUTH_TOKEN;
 // axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
 
-const config = {
-  // baseURL: process.env.baseURL || process.env.apiUrl || ""
-  // timeout: 60 * 1000, // Timeout
+const config: AxiosRequestConfig = {
+  timeout: 60 * 1000, // Timeout
   // withCredentials: true, // Check cross-site Access-Control
 };
+
+if (process.env.NODE_ENV === "production") {
+  config.baseURL = process.env.VUE_APP_BASE_API;
+}
 
 const _axios = axios.create(config);
 
 _axios.interceptors.request.use(
   (cfg) => {
+    if (process.env.NODE_ENV === "production") {
+      debugger;
+      if (cfg.url && cfg.url.startsWith("/api")) {
+        cfg.url = cfg.url.replace(/^\/api/, "");
+      }
+    }
     // Do something before request is sent
     return cfg;
   },
@@ -56,4 +65,4 @@ Plugin.install = (Vue) => {
 
 Vue.use(Plugin);
 
-export default Plugin;
+export default _axios;

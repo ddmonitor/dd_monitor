@@ -1,0 +1,73 @@
+@import "./variables.scss";
+
+body {
+  margin: 0;
+  > div#app {
+    height: 100vh;
+    > div {
+      height: 100%;
+      > .el-header {
+        height: auto !important;
+      }
+    }
+  }
+}
+
+div {
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.d-wrap {
+  height: 100%;
+  width: 100%;
+  padding: 8px;
+
+  > div {
+    height: 100%;
+    width: 100%;
+  }
+}
+
+.d-flex-v {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.d-valign {
+  display: flex;
+  align-items: center;
+}
+
+.d-scroll {
+  overflow: auto;
+}
+
+.d-flex-fill {
+  flex: auto;
+}
+
+.d-h100 {
+  height: 100%;
+}
+.d-w100 {
+  width: 100%;
+}
+.d-fill {
+  height: 100%;
+  width: 100%;
+}
+.d-center-block {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.d-content-m {
+  > * + * {
+    margin-top: 16px;;
+  }
+}
+@import "./cover.scss";

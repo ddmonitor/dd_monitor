@@ -8,6 +8,7 @@
     "strictFunctionTypes": false,
     "moduleResolution": "node",
     "skipLibCheck": true,
+    "resolveJsonModule": true,
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "esModuleInterop": true,

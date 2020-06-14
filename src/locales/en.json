@@ -1,3 +1,23 @@
 {
-  "message": "hello i18n !!"
+  "appName": "DD Monitor",
+  "empty": "No data available",
+  "template": "template",
+  "template_modes": {
+    "standard": "standard",
+    "window": "window",
+    "mobile": "mobile",
+    "common": "common"
+  },
+  "buttons": {
+    "login": "Log in",
+    "bili_not_login": "Bilibili is not logged in",
+    "language": "Language",
+    "script_active": "The script is active",
+    "script_offline": "The script is inactive.Click to install"
+  },
+  "menus": {
+    "switch_template": "Switch Template",
+    "template_manage": "Template Manage",
+    "about": "About"
+  }
 }

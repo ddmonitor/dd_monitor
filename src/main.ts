@@ -1,11 +1,15 @@
 import "array-proto-ext";
+import 'reflect-metadata';
 
 import Vue from 'vue';
 import App from './App.vue';
 import router from './router';
 import store from './store';
 
-import './plugins/element.js';
+import '@/styles/main.scss';
+import "@fortawesome/fontawesome-free/css/all.css";
+
+import './plugins/element';
 import './plugins/axios';
 import i18n from './plugins/i18n'
 

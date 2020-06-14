@@ -1,10 +1,16 @@
 
 module.exports = {
   productionSourceMap: true,
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  /**
+   * @param {import("webpack-chain")} config
+   */
   chainWebpack: config => {
-
-      
+    config
+      .plugin('html')
+      .tap(args => {
+        args[0].title = 'DD Monitor';
+        return args;
+      });
   },
   pluginOptions: {
     i18n: {
