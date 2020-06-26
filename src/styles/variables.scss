@@ -23,6 +23,20 @@ $primary-light-5: mix(white, $primary-color, 50%);
 $primary-light-7: mix(white, $primary-color, 70%);
 $primary-light-9: mix(white, $primary-color, 90%);
 
+$accent-dark-9:  mix(black, $accent-color, 90%);
+$accent-dark-7:  mix(black, $accent-color, 70%);
+$accent-dark-5:  mix(black, $accent-color, 50%);
+$accent-dark-3:  mix(black, $accent-color, 30%);
+$accent-dark-1:  mix(black, $accent-color, 10%);
+
+$accent-light-1: mix(white, $accent-color, 10%);
+$accent-light-3: mix(white, $accent-color, 30%);
+$accent-light-5: mix(white, $accent-color, 50%);
+$accent-light-7: mix(white, $accent-color, 70%);
+$accent-light-9: mix(white, $accent-color, 90%);
+
+$--tree-node-hover-background-color: $primary-light-9;
+
 @import "~element-ui/packages/theme-chalk/src/index";
 
 

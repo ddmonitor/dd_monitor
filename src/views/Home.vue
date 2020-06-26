@@ -1,17 +1,14 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <el-button>test</el-button>
-  </div>
+  <DWrap>
+
+  </DWrap>
 </template>
 
-<script>
-// @ is an alias to /src
+<script lang="ts">
+import { Component, Vue, Prop } from 'vue-property-decorator'
 
-
-export default {
-  name: 'Home',
-  components: {
-  }
+@Component
+export default class Home extends Vue { 
+  
 }
 </script>

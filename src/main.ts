@@ -11,7 +11,10 @@ import "@fortawesome/fontawesome-free/css/all.css";
 
 import './plugins/element';
 import './plugins/axios';
-import i18n from './plugins/i18n'
+import i18n from './plugins/i18n';
+import "./plugins/audio";
+
+import "@/components/index";
 
 Vue.config.productionTip = false
 

@@ -35,8 +35,10 @@ export default class Layout extends Vue {
     .app-main {
         flex: auto;
         display: flex;
+        height: 1vh;
         .app-page {
             flex: auto;
+            background-color: #f6f6f6;
         }
     }
 }

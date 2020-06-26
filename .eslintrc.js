@@ -18,11 +18,15 @@ module.exports = {
     'vue/no-unused-components': 'off',
     'vue/no-side-effects-in-computed-properties': 'warn',
     'vue/no-unused-vars': 'warn',
-    'vue/this-in-template': 'warn',
+    'vue/this-in-template': 'error',
     
     '@typescript-eslint/no-var-requires': "off",
     '@typescript-eslint/camelcase': "off",
+    '@typescript-eslint/no-explicit-any': "off",
+    '@typescript-eslint/no-empty-function': "warn",
     '@typescript-eslint/class-name-casing': "warn",
+    
     'no-empty': 'warn',
+    'prefer-const': "warn"
   }
 }

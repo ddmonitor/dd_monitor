@@ -48,8 +48,8 @@ export default class YagooKoatsu extends Vue {
     name: "Shiny Smily Story",
     artist: "hololive IDOL PROJECT",
     url: "/audio/sss.mp3",
-    cover: "/img/sss.jpg",
-    lrc: "/sss.lrc.txt",
+    cover: "/audio/sss.jpg",
+    lrc: "/audio/sss.lrc",
     theme: "#49c8f0"
   };
 

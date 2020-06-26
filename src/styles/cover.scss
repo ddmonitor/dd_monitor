@@ -4,9 +4,12 @@
 ::-webkit-scrollbar {
   width: 8px;
   height: 8px;
+  border-radius: 4px;
+  background-color: $accent-light-7;
 }
 
 ::-webkit-scrollbar-thumb {
   height: 8px;
   border-radius: 4px;
+  background-color: $accent-color;
 }
