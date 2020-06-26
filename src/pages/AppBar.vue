@@ -10,7 +10,7 @@
           <span>{{version}}</span>
         </div>
         <div class="app-bar__menu">
-          <!-- <AppMenu :menu="$menu" /> -->
+          <AppMenu :menu="$menu" />
         </div>
         <div class="app-bar__buttons">
           <el-popover  placement="bottom" trigger="click">
@@ -76,7 +76,7 @@
       </div>
     </transition>
 
-    <div class="arrow" :class="{'is-expand': expand}" @click="toggleExpand"></div>
+    <div v-show="false" class="arrow" :class="{'is-expand': expand}" @click="toggleExpand"></div>
   </div>
   
   
@@ -180,7 +180,7 @@ export default class AppBar extends Vue {
     padding-left: 16px;
     padding-right: 16px;
     background-color: white;
-    border-bottom: 2px solid $primary-color;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.1);
   }
 
   img.logo {

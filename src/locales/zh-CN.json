@@ -18,7 +18,10 @@
   "menus": {
     "switch_template": "切换模板",
     "template_manage": "模板管理",
-    "about": "关于"
+    "about": "关于",
+
+    "home": "首页",
+    "bilifast": "Vup搜索"
   },
   "actions": {
     "media": {

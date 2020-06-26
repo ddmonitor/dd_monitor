@@ -9,7 +9,7 @@ export default class AppMenu extends Vue {
     render(h: CreateElement) {
         const vm = (
             <el-menu mode="horizontal" class="app-menu" menu-trigger="click"
-                default-active="m1">
+                default-active="m0">
                 {this.menuRender(this.menu)}
             </el-menu>
         );

@@ -11,6 +11,10 @@
   "buttons": {
     "language": "言語"
   },
+  "menus": {
+    "home": "ホーム",
+    "bilifast": "Vup検索"
+  },
   "actions": {
     "media": {
       "play": "再生",

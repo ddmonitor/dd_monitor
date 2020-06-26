@@ -18,7 +18,10 @@
   "menus": {
     "switch_template": "Switch Template",
     "template_manage": "Template Manage",
-    "about": "About"
+    "about": "About",
+
+    "home": "Home",
+    "bilifast": "Search Vups"
   },
   "actions": {
     "media": {
