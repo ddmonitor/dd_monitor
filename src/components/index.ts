@@ -9,7 +9,7 @@ function registerComponents() {
         const option = getOptions(component);
         let name = option.name;
         // 检查文件名作为组件名
-        if (!name || name === "t") {
+        if (!name || name.length === 1) {
             const match = /([a-zA-Z0-9-_]+)\.(?:vue|tsx)$/.exec(key);
             name = match ? match[1] : "";
         }
