@@ -10,5 +10,20 @@
   },
   "buttons": {
     "language": "言語"
+  },
+  "actions": {
+    "media": {
+      "play": "再生",
+      "pause": "一時停止",
+      "stop": "停止"
+    }
+  },
+  "forms": {
+    "bili_calendar": {
+      "$name": "生放送カレンダー",
+      "start_time": "時間",
+      "ruid": "UP",
+      "title": "タイトル"
+    }
   }
 }

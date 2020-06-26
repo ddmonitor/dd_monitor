@@ -33,6 +33,7 @@ const store = new Vuex.Store({
       const lang = getStore("language") || "zh-CN";
       i18n.locale = lang;
       document.title = i18n.t("appName") as string;
+      document.documentElement.lang = lang;
       return lang;
     })(),
     isScriptActive: false,
@@ -47,6 +48,7 @@ const store = new Vuex.Store({
       s.language = lang;
       i18n.locale = lang;
       document.title = i18n.t("appName") as string;
+      document.documentElement.lang = lang;
       setStore("language", lang);
     },
     TOGGLE_SCRIPT_STATE(s, state) {

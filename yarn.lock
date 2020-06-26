@@ -1490,6 +1490,13 @@ address@^1.1.2:
   resolved "https://registry.npm.taobao.org/address/download/address-1.1.2.tgz#bf1116c9c758c51b7a933d296b72c221ed9428b6"
   integrity sha1-vxEWycdYxRt6kz0pa3LCIe2UKLY=
 
+af-table-column@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.npm.taobao.org/af-table-column/download/af-table-column-1.0.3.tgz#5cf6b461054a8c8a7446a51623717d6c205d5d4f"
+  integrity sha1-XPa0YQVKjIp0RqUWI3F9bCBdXU8=
+  dependencies:
+    vue "^2.6.10"
+
 aggregate-error@^3.0.0:
   version "3.0.1"
   resolved "https://registry.npm.taobao.org/aggregate-error/download/aggregate-error-3.0.1.tgz#db2fe7246e536f40d9b5442a39e117d7dd6a24e0"
@@ -8832,7 +8839,7 @@ vue-tsx-support@^2.3.3:
   resolved "https://registry.npm.taobao.org/vue-tsx-support/download/vue-tsx-support-2.3.3.tgz#234603ce7d15d6a93aff7049622b3857250bcf47"
   integrity sha1-I0YDzn0V1qk6/3BJYis4VyULz0c=
 
-vue@^2.5.17, vue@^2.6.11:
+vue@^2.5.17, vue@^2.6.10, vue@^2.6.11:
   version "2.6.11"
   resolved "https://registry.npm.taobao.org/vue/download/vue-2.6.11.tgz?cache=0&sync_timestamp=1592000011428&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fvue%2Fdownload%2Fvue-2.6.11.tgz#76594d877d4b12234406e84e35275c6d514125c5"
   integrity sha1-dllNh31LEiNEBuhONSdcbVFBJcU=

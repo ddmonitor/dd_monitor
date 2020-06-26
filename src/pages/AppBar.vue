@@ -238,6 +238,7 @@ export default class AppBar extends Vue {
     left: calc(50% - 20px);
     height: 18px;
     width: 60px;
+    z-index: 99;
 
     text-align: center;
     font-size: 12px;

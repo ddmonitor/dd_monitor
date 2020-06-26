@@ -19,5 +19,20 @@
     "switch_template": "Switch Template",
     "template_manage": "Template Manage",
     "about": "About"
+  },
+  "actions": {
+    "media": {
+      "play": "Play",
+      "pause": "Pause",
+      "stop": "Stop"
+    }
+  },
+  "forms": {
+    "bili_calendar": {
+      "$name": "Live Calendar",
+      "start_time": "Time",
+      "ruid": "UP",
+      "title": "Title"
+    }
   }
 }

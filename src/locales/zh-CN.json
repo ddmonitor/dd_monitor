@@ -19,5 +19,20 @@
     "switch_template": "切换模板",
     "template_manage": "模板管理",
     "about": "关于"
+  },
+  "actions": {
+    "media": {
+      "play": "播放",
+      "pause": "暂停",
+      "stop": "停止"
+    }
+  },
+  "forms": {
+    "bili_calendar": {
+      "$name": "直播日历",
+      "start_time": "时间",
+      "ruid": "UP",
+      "title": "标题"
+    }
   }
 }

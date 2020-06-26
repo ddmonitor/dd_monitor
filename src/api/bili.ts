@@ -65,3 +65,16 @@ export function followList(current = 1, size = 20) {
         }
     });
 }
+/**
+ * 获取当前用户关注主播的日历
+ * @param month yyyy-MM
+ */
+export function getCalendar(month: string) {
+    return biliApi({
+        method: "GET",
+        url: `https://api.live.bilibili.com/xlive/web-ucenter/v2/calendar/GetProgramList?type=2`,
+        params: {
+            year_month: month
+        }
+    });
+}

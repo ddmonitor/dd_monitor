@@ -9,7 +9,13 @@ let routes: { [url: string]: RouteConfig } = {};
 const wrapperRoute: RouteConfig = {
   path: '/',
   component: Layout,
-  children: []
+  children: [
+    {
+      path: "/",
+      name: "home",
+      component: () => import(/* webpackChunkName: "views" */ `@/views/Home.vue`)
+    }
+  ]
 };
 function registerStatic() {
   routes = statics
