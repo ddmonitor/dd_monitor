@@ -24,7 +24,8 @@
     "media": {
       "play": "播放",
       "pause": "暂停",
-      "stop": "停止"
+      "stop": "停止",
+      "watch": "观看"
     }
   },
   "forms": {

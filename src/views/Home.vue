@@ -34,9 +34,8 @@
             <el-table-column prop="room_id" width="80">
               <div slot-scope="{row}">
                 <el-button type="primary" size="small"
-                  @click="watch(row.room_id)"
-                  icon="fa fa-play">
-                  {{$t("actions.media.play")}}
+                  @click="watch(row.room_id)" >
+                  {{$t("actions.media.watch")}}
                 </el-button>
               </div>
             </el-table-column>

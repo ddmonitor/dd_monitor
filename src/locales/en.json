@@ -24,7 +24,8 @@
     "media": {
       "play": "Play",
       "pause": "Pause",
-      "stop": "Stop"
+      "stop": "Stop",
+      "watch": "Watch"
     }
   },
   "forms": {

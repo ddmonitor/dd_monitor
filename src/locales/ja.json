@@ -15,7 +15,8 @@
     "media": {
       "play": "再生",
       "pause": "一時停止",
-      "stop": "停止"
+      "stop": "停止",
+      "watch": "見る"
     }
   },
   "forms": {
