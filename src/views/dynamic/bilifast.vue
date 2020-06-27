@@ -18,25 +18,11 @@
 
           <div class="vtb-select" >
             <div class="table-wrapper">
-              <el-table :data="data" :highlight-current-row="true" border
-                @row-click="selectVtb"
-                height="100%" >
-                <el-table-column
-                  prop="name"
-                  label="姓名">
-                </el-table-column>
-                <el-table-column
-                  prop="biliUid"
-                  label="bilibili UID">
-                </el-table-column>
-                <el-table-column
-                  prop="groupId"
-                  label="分组">
-                  <template>
-                    {{currentGroup?currentGroup.name:''}}
-                  </template>
-                </el-table-column>
-              </el-table>
+              <DTable :data="data" :config="config" 
+                v-model="currentRow" 
+                :selection.sync="select">
+
+              </DTable>
             </div>
             <el-pagination
               layout="prev, pager, next"
@@ -48,7 +34,7 @@
           </div>
 
           <div>
-            <BLive :uid="currentUid" />
+            <BLive :uid="currentRow ? currentRow.biliUid : 0" />
           </div>
           <YagooKoatsu style="margin-top:20px;"/>
         </div>
@@ -65,6 +51,7 @@ import { getTree } from '@/api/group';
 import { BasicTree } from '@/types/common/Tree';
 import { ComponentMessageEvent } from "@/types/message/message";
 import { Dictionary } from 'array-proto-ext';
+import { DTableConfig} from "@/components/global/form/DTable.ts";
 @Component
 
 export default class hololivebili extends Vue {
@@ -81,7 +68,26 @@ export default class hololivebili extends Vue {
   currentGroup: number | null = null;
   id = 0;
   loading = false;
-  currentUid = 0;
+  currentRow = null;
+
+  select: any[] = [];
+
+  config: DTableConfig = {
+    showIndex: true,
+    // selection: true,
+    columns: [
+      {
+        prop: "name",
+        type: "text",
+        label: "姓名"
+      },
+      {
+        prop: "biliUid",
+        type: "text",
+        label: "UID"
+      },
+    ]
+  }
 
   @Watch("currentGroup")
   groupChange() {
@@ -108,10 +114,6 @@ export default class hololivebili extends Vue {
     this.page.current = res.data.data.current;
     this.page.total = res.data.data.total;
     this.data = res.data.data.data;
-  }
-
-  selectVtb(row: any) {
-    this.currentUid = row.biliUid;
   }
 
 }
@@ -146,10 +148,10 @@ export default class hololivebili extends Vue {
         display: flex;
         flex: auto;
         height: 100%;
-        .el-table {
-          width: 1vw;
-          flex: auto;
-        }
+        // .el-table {
+        //   width: 1vw;
+        //   flex: auto;
+        // }
       }
       .el-pagination {
         text-align: right;
