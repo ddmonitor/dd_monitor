@@ -20,22 +20,16 @@
             <div class="table-wrapper">
               <DTable :data="data" :config="config" 
                 v-model="currentRow" 
-                :selection.sync="select">
+                :selection.sync="select"
+                :page.sync="page"
+                @page-change="pageChange">
 
               </DTable>
             </div>
-            <el-pagination
-              layout="prev, pager, next"
-              :total="page.total"
-              :current-page.sync="page.current"
-              :page-size.sync="page.size"
-              @current-change="currentChange">
-            </el-pagination>
           </div>
 
-          <div>
-            <BLive :uid="currentRow ? currentRow.biliUid : 0" />
-          </div>
+          <BLive :uid="currentRow ? currentRow.biliUid : 0" style="margin-top:16px"/>
+          
           <YagooKoatsu style="margin-top:20px;"/>
         </div>
       </div>
@@ -46,9 +40,10 @@
 <script lang="ts">
 import { Component, Vue, Watch } from 'vue-property-decorator'
 import { addDOMListenerOnce } from "@/util/event";
-import { getList, getDetail, query } from '@/api/vtb';
+import { getList, getDetail} from '@/api/vtb';
 import { getTree } from '@/api/group';
 import { BasicTree } from '@/types/common/Tree';
+import { QueryItem } from "@/types/model/VO/QueryItem";
 import { ComponentMessageEvent } from "@/types/message/message";
 import { Dictionary } from 'array-proto-ext';
 import { DTableConfig} from "@/components/global/form/DTable.ts";
@@ -73,8 +68,10 @@ export default class hololivebili extends Vue {
   select: any[] = [];
 
   config: DTableConfig = {
+    // title: "test",
     showIndex: true,
     // selection: true,
+    page: true,
     columns: [
       {
         prop: "name",
@@ -92,7 +89,13 @@ export default class hololivebili extends Vue {
   @Watch("currentGroup")
   groupChange() {
     if (this.currentGroup) {
-      this.loadData({ groupId:this.currentGroup });
+      this.loadData([
+        { 
+          property: "groupId",
+          condition: "eq",
+          value: this.currentGroup
+        }
+      ]);
     }
   }
   mounted() {
@@ -105,12 +108,18 @@ export default class hololivebili extends Vue {
     this.tree = res.data.data;
   }
 
-  currentChange(current: number) {
-    this.loadData({ groupId:this.currentGroup }, current);
+  pageChange(page: { current: number }) {
+    this.loadData([
+        { 
+          property: "groupId",
+          condition: "eq",
+          value: this.currentGroup
+        }
+      ], page.current);
   }
 
-  async loadData(params: Dictionary<any> = {}, current = 1) {
-    const res = await query(params, current, this.page.size);
+  async loadData(params: QueryItem[] = [], current = 1) {
+    const res = await getList(params, current, this.page.size);
     this.page.current = res.data.data.current;
     this.page.total = res.data.data.total;
     this.data = res.data.data.data;
@@ -153,10 +162,10 @@ export default class hololivebili extends Vue {
         //   flex: auto;
         // }
       }
-      .el-pagination {
-        text-align: right;
-        margin-top: 12px;
-      }
+      // .el-pagination {
+      //   text-align: right;
+      //   margin-top: 12px;
+      // }
     }
   }
 }

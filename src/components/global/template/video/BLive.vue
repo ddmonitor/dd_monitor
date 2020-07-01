@@ -1,7 +1,7 @@
 <template>
   <div class="b-live" v-loading="loading">
-    <el-card class="d-w100">
-      <div style="display: flex;" v-if="scriptActive">
+    <el-card class="d-w100 d-h100">
+      <div style="display: flex;" class="d-h100" v-if="scriptActive">
         <div class="live-cover" v-if="liveInfo.cover">
           <CornerTag :type="liveInfo.liveStatus ? 'success' : 'info'">
             <img :src="liveInfo.cover" />
@@ -9,7 +9,7 @@
           </CornerTag>
         </div>
         <div class="live-info d-content-m">
-          <template v-if="roomidValue" class="d-h100">
+          <div v-if="roomidValue" class="d-h100">
             <div class="user-info d-valign" v-show="userInfo.name">
               <el-avatar :size="48" :src="userInfo.face"></el-avatar>
               <div class="user-name">{{userInfo.name}}</div>
@@ -23,7 +23,7 @@
               <el-button type="primary" @click="openWindow">{{$t("blive_open")}}</el-button>
               <el-button @click="openMiniWindow">{{$t("blive_openmini")}}</el-button>
             </div>
-          </template>
+          </div>
           <div v-else class="d-flex-v d-h100">
             <h3>{{$t("empty")}}</h3>
           </div>
@@ -78,6 +78,12 @@ export default class BLive extends Vue {
 
 
   async loadLive() {
+    if (!this.uid) {
+      this.roomidValue = 0;
+      this.liveInfo = {} as any;
+      this.userInfo = {} as any;
+      return;
+    }
     try {
       this.loading = true;
 
@@ -135,13 +141,19 @@ export default class BLive extends Vue {
 <style lang="scss">
 .b-live {
   width: 100%;
-  max-height: 240px;
+  height: 240px;
+  .el-card {
+    .el-card__body {
+      height: 100%;
+    }
+  }
   .live-cover {
-    height: 200px;
+    height: 100%;
     width: auto;
     img {
       height: 100%;
       width: auto;
+      max-width: 400px;
       display: block;
     }
   }

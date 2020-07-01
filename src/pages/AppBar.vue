@@ -26,7 +26,7 @@
               </el-row>
               <el-row v-if="biliUser.vipStatus"  type="flex" justify="center">
                 <div>
-                  <el-tag style="color:white" color="#fb7299" size="medium">大会员</el-tag>
+                  <el-tag style="color:white" color="#fb7299" size="medium">{{biliUser.vip_label.text}}</el-tag>
                 </div>
               </el-row>
               <el-row>

@@ -1,14 +1,18 @@
 import axios from "@/plugins/axios";
 import PageResult from '@/types/model/VO/PageResult';
+import { QueryItem } from '@/types/model/VO/QueryItem';
 import { R } from '@/types/model/VO/R';
 import { Dictionary } from 'array-proto-ext';
 
-export function getList(current = 1, size = 10) {
-    return axios.get<R<PageResult<any>>>("/api/vtb/list", {
+export function getList(query: QueryItem[] = [], current = 1, size = 10) {
+    return axios.request<R<PageResult<any>>>({
+        url: "/api/vtb/list",
+        method: "POST",
         params: {
             current,
             size
-        }
+        },
+        data: query
     });
 }
 

@@ -21,7 +21,7 @@ div {
 .d-wrap {
   height: 100%;
   width: 100%;
-  padding: 8px;
+  padding: 16px;
 
   > div {
     height: 100%;
@@ -68,6 +68,17 @@ div {
 .d-content-m {
   > * + * {
     margin-top: 16px;;
+  }
+}
+
+.d-layout--treetable {
+  display: flex;
+  .d-tree {
+    width: 300px;
+    height: 100%;
+  }
+  .d-table {
+    margin-left: 16px;
   }
 }
 @import "./cover.scss";

@@ -14,7 +14,7 @@ export type ColumnType =
     // 专用渲染类型
     "image" | "icon" | "textarea" | "code" | "link" | "progress"
     // 子表
-"subTable";
+    "subTable";
     
 export interface ColumnConfig {
     prop: string;
@@ -39,20 +39,24 @@ export interface DTableConfig {
     /** 表格标题 */
     title?: string;
     /** 树形数据 */
-    tree?: false | boolean;
+    tree?: boolean;
     /** 允许多择 */
-    selection?: false | boolean;
+    selection?: boolean;
     /** 显示序号 */
-    showIndex?: false | boolean;
+    showIndex?: boolean;
     /** 行操作列 */
-    showAction?: false | boolean;
+    showAction?: boolean;
     /** 是否分页 */
-    page?: true | boolean;
+    page?: boolean;
     /** 列定义 */
     columns: ColumnConfig[];
 }
 
-
+export interface Page {
+    current: number;
+    size: number;
+    total?: number;
+}
 
 @Component
 export default class DTable<T extends {} = Dictionary<any>> extends Vue {
@@ -65,15 +69,28 @@ export default class DTable<T extends {} = Dictionary<any>> extends Vue {
     @Prop({ required: true })
     config!: DTableConfig;
 
+    @PropSync("page", { 
+        default: () => ({
+            current: 1,
+            size: 10
+        })
+    })
+    pageInfo!: Page;
+
     @Prop({ type: Array, default: () => [] })
     selection!: T[];
 
     @Ref()
     $table!: ElTable;
 
+    mounted() {
+        this.onSelectionChange(this.selection);
+        this.onCurrentRowChange(this.value);
+    }
+
     // 外部（代码）传入
-    @Watch("selection", { immediate: true })
-    $onSelectionChange(v: T[]) {
+    @Watch("selection")
+    onSelectionChange(v: T[]) {
         if (this.config.selection) {
             for (const row of this.data) {
                 if (v.includes(row)) {
@@ -85,20 +102,22 @@ export default class DTable<T extends {} = Dictionary<any>> extends Vue {
         }
     }
     // 内部（用户）传出
-    onSelectionChange(rows: T[]) {
+    selectionChange(rows: T[]) {
         this.$emit("update:selection", rows);
     }
 
 
-    @Watch("value", { immediate: true })
-    $onCurrentRowChange(v: T) {
+    @Watch("value")
+    onCurrentRowChange(v?: T) {
         this.$table.setCurrentRow(v);
     }
-    onCurrentRowChange(row: T) {
+    currentRowChange(row: T) {
         this.$emit("input", row);
     }
 
-
+    pageChange() {
+        this.$emit("page-change", this.pageInfo);
+    }
     
 
 

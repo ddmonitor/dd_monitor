@@ -35,7 +35,7 @@ export default class DTree extends Vue {
 <style lang="scss">
 @import "@/styles/variables.scss";
 .el-card.d-tree {
-  flex: auto;
+  height: 100%;
   .el-card__body {
     height: 100%;
     .el-tree {
