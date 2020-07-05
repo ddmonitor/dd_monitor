@@ -49,13 +49,22 @@
   },
   "forms": {
     "common": {
-      "create_time": "创建时间",
-      "update_time": "修改时间"
+      "createTime": "创建时间",
+      "updateTime": "修改时间"
     },
     "meta_module": {
       "$name": "系统模块",
       "key": "模块键值",
-      "name": "模块名称"
+      "name": "模块名称",
+      "parentId": "上级模块"
+    },
+    "meta_object": {
+      "$name": "元数据对象",
+      "code": "实体编码",
+      "entityName": "实体名称",
+      "moduleId": "所属模块",
+      "tableName": "表名称",
+      "metaType": "元数据类型"
     },
     "bili_calendar": {
       "$name": "直播日历",

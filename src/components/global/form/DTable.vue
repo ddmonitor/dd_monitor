@@ -31,16 +31,18 @@
         <el-table-column type="selection" v-if="config.selection"/>
         <el-table-column type="index" v-if="config.showIndex" label="#"/>
 
-        <af-table-column v-for="col in config.columns" :key="col.prop"
-          :label="col.i18n ? $t(`forms.${col.i18n}`) : col.label"
-          :prop="col.prop"
-          :width="col.width || undefined">
-          <template slot-scope="{row}">
-            <slot :name="'col.'+col.prop" :row="row">
-              {{row[col.prop]}}
-            </slot>
-          </template> 
-        </af-table-column>
+        <template v-for="col in config.columns">
+          <af-table-column v-if="!col.tableHidden" :key="col.prop"
+            :label="col.i18n ? $t(`forms.${col.i18n}`) : col.label"
+            :prop="col.prop"
+            :width="col.width || undefined">
+            <template slot-scope="{row}">
+              <slot :name="'col.'+col.prop" :row="row">
+                {{row[col.prop]}}
+              </slot>
+            </template> 
+          </af-table-column>
+        </template>
 
         <af-table-column fixed="right" v-if="config.showAction">   
           <template slot-scope="{row}">

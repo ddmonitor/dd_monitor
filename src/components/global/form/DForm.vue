@@ -1,9 +1,13 @@
 <template>
 <div class="d-form">
-  <el-form label-width="120px" :model="myValue" ref="$form" >
+  <el-form v-if="myValue" ref="$form"
+    :model="myValue"
+    label-width="160px"  >
     <el-row :gutter="16">
       <template v-for="col in columns">
-        <el-col :key="'col_'+col.prop" :span="col.colSpan || 12">
+        <el-col v-if="!col.formHidden"
+          :key="'col_'+col.prop" 
+          :span="col.colSpan || 12">
           <el-form-item :prop="col.prop" 
             :required="col.required"
             :label="col.i18n ? $t(`forms.${col.i18n}`) : col.label">

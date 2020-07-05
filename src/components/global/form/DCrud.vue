@@ -29,7 +29,8 @@
             :with-header="true"
             @close="closeForm">
             <div slot="title">
-              <el-button plain size="small" type="info" 
+              <el-button v-show="!['view','approval','userView'].includes(mode)"
+                size="small" type="info" 
                 icon="fa fa-check" 
                 :loading="loading"
                 @click="validateForm">

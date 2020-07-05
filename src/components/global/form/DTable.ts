@@ -30,6 +30,8 @@ export interface ColumnConfig {
     width?: number;
     className?: string;
     colSpan?: 12 | number;
+    tableHidden?: boolean;
+    formHidden?: boolean;
 
     "select.optionList"?: any[];
     "dict.dictKey"?: string;

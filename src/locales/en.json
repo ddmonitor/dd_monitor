@@ -49,13 +49,22 @@
   },
   "forms": {
     "common": {
-      "create_time": "Create Time",
-      "update_time": "Update Time"
+      "createTime": "Create Time",
+      "updateTime": "Update Time"
     },
     "meta_module": {
       "$name": "System Module",
       "key": "Module Key",
-      "name": "Module Name"
+      "name": "Module Name",
+      "parentId": "Parent Module"
+    },
+    "meta_object": {
+      "$name": "Metadata Object",
+      "code": "Entity Code",
+      "entityName": "Entity Name",
+      "moduleId": "Belonging Module",
+      "tableName": "Table Name",
+      "metaType": "Metadata Type"
     },
     "bili_calendar": {
       "$name": "Live Calendar",

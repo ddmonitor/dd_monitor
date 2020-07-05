@@ -6,7 +6,6 @@
     :selection.sync="selection"
     :commands="commands"
 
-    :getTree="getTree"
     :getList="getList"
     :getRow="getRow"
     :addRow="addOrUpdateRow"
@@ -19,7 +18,7 @@
 
 <script lang="ts">
 import { Component, Vue, Watch, Ref } from "vue-property-decorator";
-import { getList, getDetail, tree, update, remove } from "@/api/system/metamodule";
+import { getList, getDetail, tree, update, remove } from "@/api/system/metaobject";
 
 import { BasicTree } from "@/types/common/Tree";
 import { QueryItem } from "@/types/model/VO/QueryItem";
@@ -34,7 +33,7 @@ import {
 import { AddCommand, EditCommand, DeleteCommand, ViewCommand } from "@/types/command/Crud";
 
 @Component
-export default class MetaModule extends Vue {
+export default class metaobject extends Vue {
 
   get commands(): CommandBinding[] {
     return [
@@ -50,30 +49,37 @@ export default class MetaModule extends Vue {
     size: 10
   };
   config: DTableConfig = {
-    titleI18n: "forms.meta_module.$name",
+    titleI18n: "forms.meta_object.$name",
     selection: true,
 
     showIndex: true,
     showCommand: true,
-    showTree: true,
+    showTree: false,
     page: true,
     columns: [
       {
-        prop: "key",
+        prop: "code",
         type: "text",
-        i18n: "meta_module.key",
+        i18n: "meta_object.code",
         required: true
       },
       {
-        prop: "name",
+        prop: "entityName",
         type: "text",
-        i18n: "meta_module.name",
+        i18n: "meta_object.entityName",
         required: true
       },
       {
-        prop: "parentId",
+        prop: "moduleId",
         type: "number",
-        i18n: "meta_module.parentId"
+        i18n: "meta_object.moduleId",
+        tableHidden: true
+      },
+      {
+        prop: "moduleName",
+        type: "text",
+        i18n: "meta_object.moduleId",
+        formHidden: true
       },
       {
         prop: "createTime",
@@ -88,23 +94,12 @@ export default class MetaModule extends Vue {
         readonly: true
       }
     ],
-    tree: {
-      showCode: false,
-      props: {
-
-      },
-      cascadeQuery: "parentId"
-    }
   };
 
 
   currentRow: any = null;
   selection: any[] = [];
 
-  async getTree() {
-    const res = await tree();
-    return res.data.data;
-  }
 
   async getList(page: Page, query: QueryItem[]) {
     const res = await getList(query, page.current, page.size);
