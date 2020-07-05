@@ -1,6 +1,7 @@
 import { Vue, Component, Prop, PropSync, Ref, Watch } from "vue-property-decorator";
 import { Dictionary } from 'array-proto-ext';
 import { Table as ElTable } from 'element-ui';
+import { Command, CommandHost, CommandBinding, CommandExecutor } from '@/types/command/Command';
 
 export type ColumnType =
     // 基础数据类型
@@ -21,35 +22,57 @@ export interface ColumnConfig {
     type: ColumnType;
     isKey?: false | boolean;
     required?: false | boolean;
+    readonly?: false | boolean;
     order?: 0 | number;
 
     label?: string;
     i18n?: string;
     width?: number;
     className?: string;
+    colSpan?: 12 | number;
 
-    optionList?: any[];
-    dictKey?: string;
-    refKey?: string;
+    "select.optionList"?: any[];
+    "dict.dictKey"?: string;
+    "ref.refKey"?: string;
+    "range.min"?: number;
+    "range.max"?: number;
 
     customConfig?: Dictionary<any>;
+}
+
+export interface TreeConfig {
+    showCode?: boolean;
+    props: {
+        id?: "id" | string;
+        name?: "name" | string;
+        code?: "code" | string;
+        children?: "children" | string;   
+    };
+    cascadeQuery: "parentId" | string;
 }
 
 export interface DTableConfig {
     /** 表格标题 */
     title?: string;
-    /** 树形数据 */
-    tree?: boolean;
+    /** 表格标题 */
+    titleI18n?: string;
     /** 允许多择 */
     selection?: boolean;
     /** 显示序号 */
     showIndex?: boolean;
     /** 行操作列 */
     showAction?: boolean;
+    /** 顶部命令栏 */
+    showCommand?: boolean;
+    /** 左侧树 */
+    showTree?: boolean;
     /** 是否分页 */
     page?: boolean;
+
     /** 列定义 */
     columns: ColumnConfig[];
+
+    tree?: TreeConfig;
 }
 
 export interface Page {
@@ -59,7 +82,9 @@ export interface Page {
 }
 
 @Component
-export default class DTable<T extends {} = Dictionary<any>> extends Vue {
+export default class DTable<T extends {} = Dictionary<any>> extends Vue 
+    implements CommandHost{
+
     @Prop()
     value: T | undefined;
 
@@ -68,6 +93,9 @@ export default class DTable<T extends {} = Dictionary<any>> extends Vue {
 
     @Prop({ required: true })
     config!: DTableConfig;
+
+    @Prop({ type: Array, default: () => [] })
+    commands!: CommandBinding[];
 
     @PropSync("page", { 
         default: () => ({
@@ -82,6 +110,14 @@ export default class DTable<T extends {} = Dictionary<any>> extends Vue {
 
     @Ref()
     $table!: ElTable;
+
+    get bindings() {
+        return this.commands
+            .reduce<Dictionary<CommandBinding>>((s, v)=> {
+                s[v.command.name] = v;
+                return s;
+            }, {});
+    }
 
     mounted() {
         this.onSelectionChange(this.selection);
@@ -119,6 +155,22 @@ export default class DTable<T extends {} = Dictionary<any>> extends Vue {
         this.$emit("page-change", this.pageInfo);
     }
     
-
+    onCommand({ command }: CommandBinding) {
+        this.$emit("command", command);
+        // switch (command.name) {
+        //     case "crud.add":
+        //         this.$emit("row-add");
+        //         break;
+        //     case "crud.edit":
+        //         this.$emit("row-edit", this.value);
+        //         break;
+        //     case "crud.delete":
+        //         this.$emit("row-delete", this.selection);
+        //         break;
+        //     default:
+        //         break;
+        // }
+        
+    }
 
 }

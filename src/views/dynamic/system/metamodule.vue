@@ -1,109 +1,127 @@
 <template>
-  <DWrap>
-    <div class="d-layout--treetable">
-      <DTree v-model="treeItem" :showCode="false" 
-        :tree="tree">
-      </DTree>
-      
-      <DTable ref="$table" v-model="currentRow" 
-        v-loading="loading"
-        :config="config" :data="data" 
-        :selection.sync="selection"
-        :page.sync="page"
-        @page-change="pageChange">
-      </DTable>
-    </div>
-  </DWrap>
+  <DCrud v-model="currentRow"
+    class="d-h100"
+    :config="config"
+    :page.sync="page"
+    :selection.sync="selection"
+    :commands="commands"
+
+    :getTree="getTree"
+    :getList="getList"
+    :getRow="getRow"
+    :addRow="addOrUpdateRow"
+    :updateRow="addOrUpdateRow"
+    :deleteList="deleteList"
+  >
+
+  </DCrud>
 </template>
 
 <script lang="ts">
-import { Component, Vue, Watch } from 'vue-property-decorator';
-import { getList, tree } from "@/api/system/metamodule";
+import { Component, Vue, Watch, Ref } from "vue-property-decorator";
+import { getList, getDetail, tree, update, remove } from "@/api/system/metamodule";
 
-import { BasicTree } from '@/types/common/Tree';
+import { BasicTree } from "@/types/common/Tree";
 import { QueryItem } from "@/types/model/VO/QueryItem";
-import { Dictionary } from 'array-proto-ext';
-import { DTableConfig, Page } from "@/components/global/form/DTable.ts";
+import { Dictionary } from "array-proto-ext";
+import DTable, { DTableConfig, Page } from "@/components/global/form/DTable.ts";
+import {
+  CommandHost,
+  CommandBinding,
+  Command,
+  CommandExecutor,
+} from "@/types/command/Command";
+import { AddCommand, EditCommand, DeleteCommand, ViewCommand } from "@/types/command/Crud";
 
 @Component
 export default class MetaModule extends Vue {
 
-  loading = false;
-  tree: BasicTree[] = [];
-  data: Dictionary<any>[] = [];
+  get commands(): CommandBinding[] {
+    return [
+      { command: ViewCommand, executable: !!this.currentRow },
+      { command: AddCommand, executable: true },
+      { command: EditCommand, executable: !!this.currentRow },
+      { command: DeleteCommand, executable: this.selection.length > 0 }, 
+    ];
+  }
+
   page: Page = {
     current: 1,
     size: 10
   };
   config: DTableConfig = {
-    title: "Table Title",
+    titleI18n: "forms.meta_module.$name",
     selection: true,
 
     showIndex: true,
-    showAction: true,
+    showCommand: true,
+    showTree: true,
     page: true,
     columns: [
       {
         prop: "key",
         type: "text",
-        label: "Key"
+        i18n: "meta_module.key",
+        required: true
       },
       {
         prop: "name",
         type: "text",
-        label: "Name"
+        i18n: "meta_module.name",
+        required: true
+      },
+      {
+        prop: "createTime",
+        type: "date",
+        i18n: "common.create_time",
+        readonly: true
+      },
+      {
+        prop: "updateTime",
+        type: "date",
+        i18n: "common.update_time",
+        readonly: true
       }
-    ]
+    ],
+    tree: {
+      showCode: false,
+      props: {
+
+      },
+      cascadeQuery: "parentId"
+    }
   };
 
-  treeItem: number | null = null;
+
   currentRow: any = null;
   selection: any[] = [];
 
-  @Watch("treeItem")
-  onTreeItemChange() {
-    this.loadData();
-  }
-
-  mounted() {
-    this.loadTree();
-    this.loadData();
-  }
-
-  async loadTree() {
+  async getTree() {
     const res = await tree();
-    this.tree = res.data.data;
+    return res.data.data;
   }
 
-  async loadData(page?: Page, query: QueryItem[] = []) {
-    page = page || this.page;
-    if (this.treeItem) {
-      debugger
-      query.push({
-        property: "parentId",
-        condition: "eq",
-        value: this.treeItem
-      });
-    }
-    try {
-      this.loading = true;
-      const res = await getList(query, page.current, page.size);
-      this.page.current = res.data.data.current;
-      this.page.total = res.data.data.total;
-      this.data = res.data.data.data;
-    } catch (error) {
-      this.$message.error(error.message);
-    } finally {
-      this.loading = false;
-    }
+  async getList(page: Page, query: QueryItem[]) {
+    const res = await getList(query, page.current, page.size);
+    return res.data.data;
   }
 
-  pageChange() {
-    this.loadData();
+  async getRow(id: number) {
+    const res = await getDetail(id);
+    return res.data.data;
   }
+
+  async addOrUpdateRow(row: any) {
+    await update(row);
+  }
+
+  async deleteList(list: any[]) {
+    await remove(list.map(r => r.id));
+  }
+
+  
 }
 </script>
 
 <style lang="scss">
-
 </style>

@@ -26,16 +26,16 @@ export function getDetail(id: number) {
 
 export function update(data: any) {
     return axios.request<R>({
-        url: "/api/system/metamodule/update",
+        url: "/api/system/metamodule/submit",
         method: "POST",
         data
     });
 }
 
-export function remove(id: number) {
-    return axios.post<R>("/api/system/metamodule/delete", undefined, {
+export function remove(ids: number[]) {
+    return axios.post<R>("/api/system/metamodule/delete", ids, {
         params: {
-            id
+            
         }
     });
 }

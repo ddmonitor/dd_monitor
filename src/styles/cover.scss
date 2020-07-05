@@ -1,5 +1,105 @@
 @import "./variables.scss";
 
+.el-button [class^=fa] + span {
+  margin-left: 5px;
+}
+
+.el-form {
+  .el-date-editor.el-input, .el-date-editor.el-input__inner {
+    width: 100%;
+  }
+}
+
+
+// 对话框-基本样式
+.el-dialog {
+  .el-dialog__header {
+    padding: 15px 20px;
+    text-align: center;
+    border-bottom: 1px solid $basic-border;
+  }
+
+  .el-dialog__body {
+    padding: 24px;
+  }
+
+  .el-dialog__footer {
+    // .el-button {
+    //   padding: 8px 16px;
+    //   box-sizing: content-box;
+    //   width: 56px;
+    //   background-color: #F0F0F0;
+    //   color: $gray-text-color;
+
+    //   // 确定按钮
+    //   &.el-button--primary {
+    //     background-color: $primary-color;
+    //     color: white;
+    //   }
+
+    //   &.el-button--danger {
+    //     background-color: $accent2-color;
+    //     color: white;
+    //   }
+    // }
+  }
+}
+
+
+// 抽屉-左侧或右侧-基本样式
+.el-drawer {
+  &:focus {
+    outline: none;
+  }
+  .el-drawer__header {
+    padding: 15px 20px;
+    text-align: center;
+    border-bottom: 1px solid $basic-border;
+    margin-bottom: 0;
+  }
+
+  .el-drawer__body {
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    height: auto !important;
+    justify-content: space-between;
+
+    > :nth-child(1) {
+      flex: auto;
+    }
+
+    > :nth-child(2),
+    .footer {
+      padding-top: 10px;
+      text-align: right;
+      box-sizing: border-box;
+
+      // .el-button {
+      //   padding: 8px 16px;
+      //   box-sizing: content-box;
+      //   width: 56px;
+      //   background-color: #F0F0F0;
+      //   color: $gray-text-color;
+
+      //   text-align: center;
+
+      //   // 确定按钮
+      //   &.el-button--primary {
+      //     background-color: $primary-color;
+      //     color: white;
+      //   }
+
+      //   &.el-button--danger {
+      //     background-color: $accent2-color;
+      //     color: white;
+      //   }
+
+      // }
+    }
+  }
+}
+
 
 ::-webkit-scrollbar {
   width: 8px;

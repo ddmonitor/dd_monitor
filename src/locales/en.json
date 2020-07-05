@@ -24,6 +24,22 @@
     "bilifast": "Search Vups"
   },
   "actions": {
+    "command": {
+      "ok": "OK",
+      "cancel": "Cancel",
+      "yes": "Yes",
+      "no": "No",
+      "abort": "Abort",
+      "retry": "Retry",
+      "ignore": "Ignore"
+    },
+    "crud": {
+      "add": "Add",
+      "edit": "Edit",
+      "delete": "Delete",
+      "view": "View",
+      "search": "Search"
+    },
     "media": {
       "play": "Play",
       "pause": "Pause",
@@ -32,6 +48,15 @@
     }
   },
   "forms": {
+    "common": {
+      "create_time": "Create Time",
+      "update_time": "Update Time"
+    },
+    "meta_module": {
+      "$name": "System Module",
+      "key": "Module Key",
+      "name": "Module Name"
+    },
     "bili_calendar": {
       "$name": "Live Calendar",
       "start_time": "Time",

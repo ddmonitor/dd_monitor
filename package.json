@@ -1,6 +1,6 @@
 {
   "name": "ddmonitor",
-  "version": "0.3.1",
+  "version": "0.4.0",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
@@ -15,6 +15,7 @@
     "array-proto-ext": "^1.5.2",
     "core-js": "^3.6.5",
     "element-ui": "^2.4.5",
+    "lodash": "^4.17.15",
     "reflect-metadata": "^0.1.13",
     "vue": "^2.6.11",
     "vue-class-component": "^7.2.3",
@@ -27,6 +28,7 @@
   },
   "devDependencies": {
     "@intlify/vue-i18n-loader": "^1.0.0",
+    "@types/lodash": "^4.14.157",
     "@types/webpack": "^4.41.17",
     "@typescript-eslint/eslint-plugin": "^2.33.0",
     "@typescript-eslint/parser": "^2.33.0",

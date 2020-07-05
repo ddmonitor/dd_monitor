@@ -4,7 +4,7 @@
       :expand-on-click-node="false"
       @current-change="selectItem">
       <span class="tree-node" slot-scope="{ data }">
-        <span v-if="showCode">{{ data.code }}</span>
+        <span v-if="showCode" class="node-code">{{ data.code }} </span>
         <span>{{ data.name }}</span>
       </span>
     </el-tree>
@@ -36,6 +36,7 @@ export default class DTree extends Vue {
 @import "@/styles/variables.scss";
 .el-card.d-tree {
   height: 100%;
+  padding: 0px;
   .el-card__body {
     height: 100%;
     .el-tree {
@@ -51,6 +52,10 @@ export default class DTree extends Vue {
         .tree-node {
           padding: 8px 4px;
           font-size: 20px;
+          .node-code {
+            min-width: 100px;
+            display: inline-block;
+          }
         }
 
         &.is-current {

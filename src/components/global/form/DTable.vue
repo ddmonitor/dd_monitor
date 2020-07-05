@@ -1,9 +1,25 @@
 <template>
   <div class="d-table">
-    <div v-if="config.title" class="d-table__title">
+    <div v-if="config.titleI18n || config.title" class="d-table__title">
       <slot name="title" :config="config">
-        <h2>{{config.title}}</h2>
+        <h2>{{config.titleI18n ? $t(config.titleI18n) : (config.title || "")}}</h2>
       </slot>
+    </div>
+
+    <div v-if="config.showCommand" class="d-table__commandbar">
+      <ToolBar>
+        <template v-for="cmd in commands">
+          <slot :name="'cmd.'+cmd.command.name" :bind="cmd" >
+            <el-button plain size="small" 
+              :key="'btn_'+ cmd.command.name"
+              :icon="cmd.command.icon" 
+              :disabled="!cmd.executable"
+              @click="onCommand(cmd)">
+              {{cmd.command.i18n ? $t(cmd.command.i18n) : (cmd.command.text || "") }}
+            </el-button>
+          </slot>
+        </template>
+      </ToolBar>
     </div>
 
     <ResponsivePanel class="d-table__main">
@@ -13,7 +29,6 @@
         @selection-change="selectionChange"
         @current-change="currentRowChange">
         <el-table-column type="selection" v-if="config.selection"/>
-        <el-table-column type="expand" v-if="config.tree"/>
         <el-table-column type="index" v-if="config.showIndex" label="#"/>
 
         <af-table-column v-for="col in config.columns" :key="col.prop"
@@ -61,14 +76,19 @@
   .d-table__title {
     width: 100%;
     background-color: white;
-    border-bottom: 1px solid #DCDFE6;
+    border-bottom: 1px solid $basic-border;
     h2 {
       text-align: center;
       margin: 0;
       line-height: 40px;
-      font-size: 1.6em;
+      font-size: 1.2em;
     }
   }
+
+  .d-table__commandbar {
+    width: 100%;
+  }
+
   .d-table__main {
     flex: auto;
     padding:0 16px;
