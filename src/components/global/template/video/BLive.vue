@@ -10,7 +10,7 @@
         </div>
         <div class="live-info d-content-m">
           <div v-if="roomidValue" class="d-h100">
-            <div class="user-info d-valign" v-show="userInfo.name">
+            <div class="user-info d-valign" v-show="userInfo && userInfo.name">
               <el-avatar :size="48" :src="userInfo.face"></el-avatar>
               <div class="user-name">{{userInfo.name}}</div>
               <el-tag effect="dark" size="small"
@@ -18,7 +18,7 @@
                 {{userInfo.is_followed?$t('blive_follow'):$t('blive_notfollow')}}
               </el-tag>
             </div>
-            <div class="d-flex-fill" v-show="userInfo.name">{{liveInfo.title}}</div>
+            <div class="d-flex-fill" v-show="userInfo && userInfo.name">{{liveInfo.title}}</div>
             <div class="button-section">
               <el-button type="primary" @click="openWindow">{{$t("blive_open")}}</el-button>
               <el-button @click="openMiniWindow">{{$t("blive_openmini")}}</el-button>

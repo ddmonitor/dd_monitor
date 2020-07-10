@@ -73,13 +73,7 @@ export default class metaobject extends Vue {
         prop: "moduleId",
         type: "number",
         i18n: "meta_object.moduleId",
-        tableHidden: true
-      },
-      {
-        prop: "moduleName",
-        type: "text",
-        i18n: "meta_object.moduleId",
-        formHidden: true
+        "ref.labelProp": "moduleName"
       },
       {
         prop: "createTime",

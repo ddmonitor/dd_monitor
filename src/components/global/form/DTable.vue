@@ -38,7 +38,7 @@
             :width="col.width || undefined">
             <template slot-scope="{row}">
               <slot :name="'col.'+col.prop" :row="row">
-                {{row[col.prop]}}
+                {{col["ref.labelProp"] ? row[col["ref.labelProp"]] : row[col.prop]}}
               </slot>
             </template> 
           </af-table-column>

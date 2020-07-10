@@ -3,8 +3,14 @@
     <el-tree :data="tree" :props="{ label: 'name' }" node-key="id" 
       :expand-on-click-node="false"
       @current-change="selectItem">
-      <span class="tree-node" slot-scope="{ data }">
-        <span v-if="showCode" class="node-code">{{ data.code }} </span>
+      <span class="d-tree__node" slot-scope="{ data }">
+        <span class="node-icon" v-if="showIcon">
+          <template v-if="data.icon"> 
+            <i v-if="isFontClass(data.icon)" class="node-icon--font" :class="data.icon"></i>
+            <img v-else :src="data.icon"  class="node-icon--image"/>
+          </template>
+        </span>
+        <span v-if="showCode" class="node-code">{{ data.code }}</span>
         <span>{{ data.name }}</span>
       </span>
     </el-tree>
@@ -25,9 +31,16 @@ export default class DTree extends Vue {
 
   @Prop({ type: Boolean, default: true })
   showCode!: boolean;
+  
+  @Prop({ type: Boolean, default: true })
+  showIcon!: boolean;
 
   selectItem(item: TreeItem<any>) {
     this.$emit("input", item.id);
+  }
+
+  isFontClass(str: string) {
+    return /^[a-z0-9]+([a-z0-9-_]+ *)*$/i.test(str);
   }
 }
 </script>
@@ -49,12 +62,20 @@ export default class DTree extends Vue {
             font-size: 18px;
           }
         }
-        .tree-node {
+        .d-tree__node {
           padding: 8px 4px;
           font-size: 20px;
-          .node-code {
-            min-width: 100px;
+          > * + * {
+            margin-left: 8px;
+          }
+          .node-icon {
             display: inline-block;
+            width: 24px;
+            max-height: 24px;
+            img {
+              width: 100%;
+              object-fit: scale-down;
+            }
           }
         }
 

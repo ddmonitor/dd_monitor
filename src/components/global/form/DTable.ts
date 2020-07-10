@@ -20,7 +20,6 @@ export type ColumnType =
 export interface ColumnConfig {
     prop: string;
     type: ColumnType;
-    isKey?: false | boolean;
     required?: false | boolean;
     readonly?: false | boolean;
     order?: 0 | number;
@@ -36,8 +35,9 @@ export interface ColumnConfig {
     "select.optionList"?: any[];
     "dict.dictKey"?: string;
     "ref.refKey"?: string;
+    "ref.labelProp"?: string;
     "range.min"?: number;
-    "range.max"?: number;
+    "range.max"?: number;  
 
     customConfig?: Dictionary<any>;
 }

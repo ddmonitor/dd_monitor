@@ -4,6 +4,7 @@
       <div class="left">
         <DTree v-model="currentGroup" 
           :showCode="false" 
+          :showIcon="false"
           :tree="tree">
         </DTree>
       </div>
@@ -81,7 +82,13 @@ export default class hololivebili extends Vue {
       {
         prop: "biliUid",
         type: "text",
-        label: "UID"
+        label: "UID",
+        width: 120
+      },
+      {
+        prop: "remark",
+        type: "textarea",
+        label: "备注"
       },
     ]
   }

@@ -25,6 +25,7 @@ module.exports = {
     '@typescript-eslint/no-explicit-any': "off",
     '@typescript-eslint/no-empty-function': "warn",
     '@typescript-eslint/class-name-casing': "warn",
+    '@typescript-eslint/member-delimiter-style': "off",
     
     'no-empty': 'warn',
     'prefer-const': "warn"
