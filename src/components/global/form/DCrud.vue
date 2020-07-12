@@ -9,6 +9,12 @@
         </DTree>
 
         <div class="d-crud__wrapper">
+          <div v-if="config.titleI18n || config.title" class="d-crud__title">
+            <slot name="title" :config="config">
+              <h2>{{config.titleI18n ? $t(config.titleI18n) : (config.title || "")}}</h2>
+            </slot>
+          </div>
+
           <DTable ref="$table"
             v-model="row"
             v-loading="loading"
@@ -59,6 +65,7 @@
 <script lang="ts" src="./DCrud.ts"></script>
 
 <style lang="scss">
+@import "@/styles/variables.scss";
 .d-crud {
   .d-crud__main {
     display: flex;
@@ -72,6 +79,19 @@
       flex: auto;
       position: relative;
       display: flex;
+      flex-direction: column;
+
+      .d-crud__title {
+        width: 100%;
+        background-color: white;
+        border-bottom: 1px solid $basic-border;
+        h2 {
+          text-align: center;
+          margin: 0;
+          line-height: 40px;
+          font-size: 1.2em;
+        }
+      }
 
       .el-drawer__wrapper {
         position: absolute;

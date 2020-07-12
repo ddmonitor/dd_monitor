@@ -3,7 +3,9 @@ import { Component, Vue, Watch, Ref, Prop, PropSync } from "vue-property-decorat
 import { BasicTree } from "@/types/common/Tree";
 import { QueryItem } from "@/types/model/VO/QueryItem";
 import { Dictionary } from "array-proto-ext";
-import DTable, { DTableConfig, Page } from "@/components/global/form/DTable.ts";
+import { DCrudConfig, Page } from "./crud";
+import DTable from "./DTable";
+
 import {
   CommandHost,
   CommandBinding,
@@ -23,7 +25,7 @@ export default class DCrud<T extends {} = Dictionary<any>> extends Vue {
   value!: T | null;
 
   @Prop({ required: true })
-  config!: DTableConfig;
+  config!: DCrudConfig;
 
   @PropSync("selection", { type: Array, default: () => [] })
   selectionList!: T[];

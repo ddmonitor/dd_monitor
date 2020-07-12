@@ -12,7 +12,7 @@
 <script lang="ts">
 import { Vue, Component, Prop, PropSync, Ref, Watch } from "vue-property-decorator";
 import { getRefList } from "@/api/system/metaref";
-import { Page } from '../DTable';
+import { Page } from '../crud';
 @Component
 export default class DInputRef extends Vue {
 

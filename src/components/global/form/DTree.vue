@@ -32,7 +32,7 @@ export default class DTree extends Vue {
   @Prop({ type: Boolean, default: true })
   showCode!: boolean;
   
-  @Prop({ type: Boolean, default: true })
+  @Prop({ type: Boolean, default: false })
   showIcon!: boolean;
 
   selectItem(item: TreeItem<any>) {

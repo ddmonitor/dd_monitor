@@ -23,7 +23,7 @@ import { getList, getDetail, tree, update, remove } from "@/api/system/metaobjec
 import { BasicTree } from "@/types/common/Tree";
 import { QueryItem } from "@/types/model/VO/QueryItem";
 import { Dictionary } from "array-proto-ext";
-import DTable, { DTableConfig, Page } from "@/components/global/form/DTable.ts";
+import { DCrudConfig, Page } from "@/components/global/form/crud";
 import {
   CommandHost,
   CommandBinding,
@@ -48,7 +48,7 @@ export default class metaobject extends Vue {
     current: 1,
     size: 10
   };
-  config: DTableConfig = {
+  config: DCrudConfig = {
     titleI18n: "forms.meta_object.$name",
     selection: true,
 
@@ -71,9 +71,21 @@ export default class metaobject extends Vue {
       },
       {
         prop: "moduleId",
-        type: "number",
+        type: "ref",
         i18n: "meta_object.moduleId",
-        "ref.labelProp": "moduleName"
+        "ref.labelProp": "moduleName",
+        "ref.refKey": "MetaModuleRef"
+      },
+      {
+        prop: "tableName",
+        type: "text",
+        i18n: "meta_object.tableName"
+      },
+      {
+        prop: "metaType",
+        type: "number",
+        i18n: "meta_object.metaType",
+        required: true
       },
       {
         prop: "createTime",

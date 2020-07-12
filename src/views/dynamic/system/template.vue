@@ -23,7 +23,7 @@ import { getList } from "@/api/system/template";
 import { BasicTree } from '@/types/common/Tree';
 import { QueryItem } from "@/types/model/VO/QueryItem";
 import { Dictionary } from 'array-proto-ext';
-import { DTableConfig, Page } from "@/components/global/form/DTable.ts";
+import { DCrudConfig, Page } from "@/components/global/form/crud";
 
 @Component
 export default class Template extends Vue {
@@ -35,7 +35,7 @@ export default class Template extends Vue {
     current: 1,
     size: 10
   };
-  config: DTableConfig = {
+  config: DCrudConfig = {
     title: "Table Title",
     selection: true,
 

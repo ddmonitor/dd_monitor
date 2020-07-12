@@ -1,6 +1,6 @@
 import { Vue, Component, Prop, PropSync, Ref, Watch } from "vue-property-decorator";
 import { Dictionary } from 'array-proto-ext';
-import { ColumnConfig } from './DTable';
+import { ColumnConfig } from './crud';
 import _ from "lodash";
 import { Form as ElForm } from 'element-ui';
 export type FormMode =

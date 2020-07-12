@@ -3,15 +3,16 @@
     <el-row :gutter="16">
       <el-col :span="18" :offset="3" :xs="{ span: 24, offset: 0}">
         <el-card class="calendar-card">
-          <DTable :data="programs" :config="config" class="d-h100">
-            <div slot="title" slot-scope="{config}">
-              <span>{{today.toLocaleDateString()}} {{$t(config.title)}}</span>
+          <div slot="header">
+            <span>{{today.toLocaleDateString()}} {{$t(config.title)}}</span>
               <el-button type="text" 
                 style="margin-left:16px"
                 icon="fa fa-info-circle"
                 @click="openCalendar"
               /> 
-            </div>
+          </div>
+          
+          <DTable :data="programs" :config="config" class="d-h100">
 
             <div slot="col.start_time" slot-scope="{row}">
               {{formatTime(row.start_time)}}
@@ -46,7 +47,7 @@ import { Component, Vue, Prop } from 'vue-property-decorator'
 import { State } from 'vuex-class';
 import { formatDate } from "@/util/util";
 import { getCalendar } from "@/api/bili";
-import { DTableConfig } from '@/components/global/form/DTable';
+import { DCrudConfig } from '@/components/global/form/crud';
 @Component
 export default class Home extends Vue { 
   @State("isScriptActive")
@@ -73,7 +74,7 @@ export default class Home extends Vue {
 
   today = new Date();
   loading = false;
-  config: DTableConfig = {
+  config: DCrudConfig = {
     title: "forms.bili_calendar.$name",
     showIndex: true,
     showAction: true,

@@ -1,11 +1,5 @@
 <template>
   <div class="d-table">
-    <div v-if="config.titleI18n || config.title" class="d-table__title">
-      <slot name="title" :config="config">
-        <h2>{{config.titleI18n ? $t(config.titleI18n) : (config.title || "")}}</h2>
-      </slot>
-    </div>
-
     <div v-if="config.showCommand" class="d-table__commandbar">
       <ToolBar>
         <template v-for="cmd in commands">
@@ -75,17 +69,6 @@
   display: flex;
   flex-direction: column;
   min-height: 40vh;
-  .d-table__title {
-    width: 100%;
-    background-color: white;
-    border-bottom: 1px solid $basic-border;
-    h2 {
-      text-align: center;
-      margin: 0;
-      line-height: 40px;
-      font-size: 1.2em;
-    }
-  }
 
   .d-table__commandbar {
     width: 100%;

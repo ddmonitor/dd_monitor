@@ -47,7 +47,7 @@ import { BasicTree } from '@/types/common/Tree';
 import { QueryItem } from "@/types/model/VO/QueryItem";
 import { ComponentMessageEvent } from "@/types/message/message";
 import { Dictionary } from 'array-proto-ext';
-import { DTableConfig} from "@/components/global/form/DTable.ts";
+import { DCrudConfig } from "@/components/global/form/crud";
 @Component
 
 export default class hololivebili extends Vue {
@@ -68,7 +68,7 @@ export default class hololivebili extends Vue {
 
   select: any[] = [];
 
-  config: DTableConfig = {
+  config: DCrudConfig = {
     // title: "test",
     showIndex: true,
     // selection: true,
