@@ -1,6 +1,6 @@
 # dd_monitor
 
-![Node CI](https://github.com/ddmonitor/dd_monitor/workflows/Node%20CI/badge.svg)
+![Node-dev CI](https://github.com/ddmonitor/dd_monitor/workflows/Node-dev%20CI/badge.svg)
 
 DD大屏，开启专属于你的dd监控室。
 
