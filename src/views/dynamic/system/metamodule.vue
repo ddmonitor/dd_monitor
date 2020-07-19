@@ -75,7 +75,7 @@ export default class MetaModule extends Vue {
         type: "ref",
         i18n: "meta_module.parentId",
         "ref.refKey": "MetaModuleRef",
-        "ref.labelProp": "parentName"
+        presentProp: "parentName"
       },
       {
         prop: "createTime",

@@ -1,6 +1,6 @@
 import { Vue, Component, Prop, PropSync, Ref, Watch } from "vue-property-decorator";
 import { Dictionary } from 'array-proto-ext';
-import { ColumnConfig } from './crud';
+import { ColumnConfig, prepareData } from './crud';
 import _ from "lodash";
 import { Form as ElForm } from 'element-ui';
 export type FormMode =
@@ -39,12 +39,12 @@ export default class DForm<T extends {} = Dictionary<any>> extends Vue {
     myValue: T = null as any;
 
     mounted() {
-        this.myValue = _.cloneDeep(this.value);
+        this.myValue = prepareData([_.cloneDeep(this.value)], this.columns)[0];
     }
 
     @Watch("value")
     onValueChange() {
-        this.myValue = _.cloneDeep(this.value);
+        this.myValue = prepareData([_.cloneDeep(this.value)], this.columns)[0];
     }
 
     async validate() {

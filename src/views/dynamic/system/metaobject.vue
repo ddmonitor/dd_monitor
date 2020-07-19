@@ -73,7 +73,7 @@ export default class metaobject extends Vue {
         prop: "moduleId",
         type: "ref",
         i18n: "meta_object.moduleId",
-        "ref.labelProp": "moduleName",
+        presentProp: "moduleName",
         "ref.refKey": "MetaModuleRef"
       },
       {
@@ -83,9 +83,14 @@ export default class metaobject extends Vue {
       },
       {
         prop: "metaType",
-        type: "number",
+        type: "select",
         i18n: "meta_object.metaType",
-        required: true
+        required: true,
+        "select.options": [
+          { label: "元数据表单", value: 1 },
+          { label: "自定义表单", value: 2 },
+          { label: "报表",      value: 3 }
+        ]
       },
       {
         prop: "createTime",

@@ -2,7 +2,7 @@ import { Vue, Component, Prop, PropSync, Ref, Watch } from "vue-property-decorat
 import { Dictionary } from 'array-proto-ext';
 import { Table as ElTable } from 'element-ui';
 import { Command, CommandHost, CommandBinding, CommandExecutor } from '@/types/command/Command';
-import { DCrudConfig, Page } from './crud';
+import { DCrudConfig, Page, ColumnConfig } from './crud';
 
 
 @Component

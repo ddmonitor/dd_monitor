@@ -48,6 +48,9 @@ export default class DInputRef extends Vue {
     }
 
     mounted() {
+        if (this.myValue) {
+            this.data = [{ id: this.myValue, name: "Loading..." }];
+        }
         this.loadData();
     }
 

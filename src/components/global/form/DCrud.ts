@@ -3,7 +3,7 @@ import { Component, Vue, Watch, Ref, Prop, PropSync } from "vue-property-decorat
 import { BasicTree } from "@/types/common/Tree";
 import { QueryItem } from "@/types/model/VO/QueryItem";
 import { Dictionary } from "array-proto-ext";
-import { DCrudConfig, Page } from "./crud";
+import { DCrudConfig, Page, prepareData } from "./crud";
 import DTable from "./DTable";
 
 import {
@@ -16,6 +16,7 @@ import { AddCommand, EditCommand, DeleteCommand } from "@/types/command/Crud";
 import DForm, { FormMode } from './DForm';
 import PageResult from '@/types/model/VO/PageResult';
 import { formatDate } from '@/util/util';
+import _ from 'lodash';
 
 @Component
 export default class DCrud<T extends {} = Dictionary<any>> extends Vue {
@@ -103,7 +104,7 @@ export default class DCrud<T extends {} = Dictionary<any>> extends Vue {
   }
 
   execute(command: Command<any>) {
-    console.log(command.name + " executed")
+    console.log(command.name + " executed");
     switch (command.name) {
       case "crud.view":
         this.mode = "view";
@@ -200,7 +201,7 @@ export default class DCrud<T extends {} = Dictionary<any>> extends Vue {
       const res = await this.getList(page, query);
       this.pageInfo.current = res.current;
       this.pageInfo.total = res.total;
-      this.data = res.data;
+      this.data = prepareData(res.data, this.config.columns);
     } catch (error) {
       this.$message.error(error.message);
     } finally {
@@ -209,6 +210,8 @@ export default class DCrud<T extends {} = Dictionary<any>> extends Vue {
       }
     }
   }
+
+  
 
   async updateData() {
     if (this.mode === "add" && this.addRow) {

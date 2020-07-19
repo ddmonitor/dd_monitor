@@ -22,6 +22,7 @@ export interface ColumnConfig {
     order?: 0 | number;
 
     label?: string;
+    presentProp?: string;
     i18n?: string;
     width?: number;
     className?: string;
@@ -29,10 +30,14 @@ export interface ColumnConfig {
     tableHidden?: boolean;
     formHidden?: boolean;
 
-    "select.optionList"?: any[];
+    "select.options"?: {
+        label: string;
+        value: any;
+        [key: string]: any;
+    }[];
     "dict.dictKey"?: string;
     "ref.refKey"?: string;
-    "ref.labelProp"?: string;
+    
     "range.min"?: number;
     "range.max"?: number;
 
@@ -79,3 +84,21 @@ export interface Page {
     size: number;
     total?: number;
 }
+
+export function prepareData(data: any[], columns: ColumnConfig[]): any[] {
+    // 处理select类型
+    const selects = columns.filter(c => c.type === "select");
+    for (const column of selects) {
+      column.presentProp = "$" + column.prop;
+      data.forEach(d => Object.defineProperty(d, "$" + column.prop, {
+        configurable: true,
+        enumerable: false,
+        get() {
+          return column["select.options"]
+            ?.filter(i => i.value == d[column.prop])[0]
+              ?.label ?? d[column.prop];
+        }
+      }));
+    }
+    return data;
+  }
