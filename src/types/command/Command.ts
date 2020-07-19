@@ -6,8 +6,7 @@ export interface Command<T = any> {
     param?: T;
     icon?: string;
     text?: string;
-    i18n?: string;
-    tooltip?: string | ((h: CreateElement, data: Dictionary<any>) => VNode[]);
+    tooltip?: string | ((h: CreateElement, bind: UICommandBinding) => VNode);
 }
 
 export interface CommandExecutor<T extends Command<U>, U = any> {
@@ -18,6 +17,16 @@ export interface CommandBinding<T extends Command = Command> {
     command: Command;
     executable: boolean;
     executor?: CommandExecutor<T>;
+}
+
+export type ComponentType = "button" | "toggle" | "custom";
+
+export interface UICommandBinding<T extends Command = Command> 
+    extends CommandBinding<T> {
+        type: ComponentType;
+        size?: "small" | "medium" | "mini";
+        sort?: number;
+        
 }
 
 export interface CommandHost {

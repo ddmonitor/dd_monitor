@@ -66,6 +66,15 @@
       "tableName": "表名称",
       "metaType": "元数据类型"
     },
+    "meta_ref": {
+      "$name": "元数据引用",
+      "key": "引用键值",
+      "name": "引用名称",
+      "metaObjectId": "关联实体",
+      "keyField": "标识字段",
+      "nameField": "展示字段",
+      "codeField": "编码字段"
+    },
     "bili_calendar": {
       "$name": "直播日历",
       "start_time": "时间",

@@ -35,19 +35,21 @@
             :with-header="true"
             @close="closeForm">
             <div slot="title">
-              <el-button v-show="!['view','approval','userView'].includes(mode)"
-                size="small" type="info" 
-                icon="fa fa-check" 
-                :loading="loading"
-                @click="validateForm">
-                {{$t("actions.command.ok")}}
-              </el-button>
-              <el-button plain size="small" 
-                icon="fa fa-times" 
-                :disabled="loading"
-                @click="closeForm">
-                {{$t("actions.command.cancel")}}
-              </el-button>
+              <template v-if="!['view','approval','userView'].includes(mode)">
+                <el-button 
+                  size="small" type="info" 
+                  icon="fa fa-check" 
+                  :loading="loading"
+                  @click="validateForm">
+                  {{$t("actions.command.ok")}}
+                </el-button>
+                <el-button plain size="small" 
+                  icon="fa fa-times" 
+                  :disabled="loading"
+                  @click="closeForm">
+                  {{$t("actions.command.cancel")}}
+                </el-button>
+              </template>
             </div>
 
             <DForm v-if="rowTemp" ref="$form"
@@ -102,6 +104,7 @@
         .el-drawer {
           .el-drawer__header {
             text-align: left;
+            padding: 15px 20px 15px 80px;
           }
         }
       }

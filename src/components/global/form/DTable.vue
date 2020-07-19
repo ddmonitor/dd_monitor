@@ -1,18 +1,9 @@
 <template>
   <div class="d-table">
     <div v-if="config.showCommand" class="d-table__commandbar">
-      <ToolBar>
-        <template v-for="cmd in commands">
-          <slot :name="'cmd.'+cmd.command.name" :bind="cmd" >
-            <el-button plain size="small" 
-              :key="'btn_'+ cmd.command.name"
-              :icon="cmd.command.icon" 
-              :disabled="!cmd.executable"
-              @click="onCommand(cmd)">
-              {{cmd.command.i18n ? $t(cmd.command.i18n) : (cmd.command.text || "") }}
-            </el-button>
-          </slot>
-        </template>
+      <ToolBar :commands="commands"
+        @command="onCommand">
+       
       </ToolBar>
     </div>
 

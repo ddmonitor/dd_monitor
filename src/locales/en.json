@@ -66,6 +66,15 @@
       "tableName": "Table Name",
       "metaType": "Metadata Type"
     },
+    "meta_ref": {
+      "$name": "Metadata Reference",
+      "key": "Reference Key",
+      "name": "Reference Name",
+      "metaObjectId": "Related Entity",
+      "keyField": "Identification Field",
+      "nameField": "Presentation Field",
+      "codeField": "Code Field"
+    },
     "bili_calendar": {
       "$name": "Live Calendar",
       "start_time": "Time",

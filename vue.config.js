@@ -5,6 +5,7 @@ module.exports = {
    * @param {import("webpack-chain")} config
    */
   chainWebpack: config => {
+    config.devtool("eval-source-map");
     config
       .plugin('html')
       .tap(args => {

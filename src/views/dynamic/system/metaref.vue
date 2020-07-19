@@ -19,7 +19,8 @@
 
 <script lang="ts">
 import { Component, Vue, Watch, Ref } from "vue-property-decorator";
-import { getList, getDetail, tree, update, remove } from "@/api/system/metamodule";
+import { tree } from "@/api/system/metamodule"
+import { getList, getDetail, update, remove } from "@/api/system/metaref";
 
 import { BasicTree } from "@/types/common/Tree";
 import { QueryItem } from "@/types/model/VO/QueryItem";
@@ -50,32 +51,48 @@ export default class MetaModule extends Vue {
     size: 10
   };
   config: DCrudConfig = {
-    titleI18n: "forms.meta_module.$name",
+    titleI18n: "forms.meta_ref.$name",
     selection: true,
 
     showIndex: true,
     showCommand: true,
-    showTree: true,
+    showTree: false,
     page: true,
     columns: [
       {
         prop: "key",
         type: "text",
-        i18n: "meta_module.key",
+        i18n: "meta_ref.key",
         required: true
       },
       {
         prop: "name",
         type: "text",
-        i18n: "meta_module.name",
+        i18n: "meta_ref.name", 
         required: true
       },
       {
-        prop: "parentId",
+        prop: "metaObjectId",
         type: "ref",
-        i18n: "meta_module.parentId",
-        "ref.refKey": "MetaModuleRef",
-        "ref.labelProp": "parentName"
+        "ref.refKey": "MetaObjectRef",
+        i18n: "meta_ref.metaObjectId"
+      },
+      {
+        prop: "keyField",
+        type: "text",
+        i18n: "meta_ref.keyField", 
+        required: true
+      },
+      {
+        prop: "nameField",
+        type: "text",
+        i18n: "meta_ref.nameField", 
+        required: true
+      },
+      {
+        prop: "codeField",
+        type: "text",
+        i18n: "meta_ref.codeField"
       },
       {
         prop: "createTime",
