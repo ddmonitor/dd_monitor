@@ -75,6 +75,14 @@
       "nameField": "Presentation Field",
       "codeField": "Code Field"
     },
+    "department": {
+      "$name": "Group Information",
+      "code": "Group Code",
+      "icon": "Logo",
+      "name": "Group Name",
+      "parentId": "Parent Group",
+      "originName": "Origin Name"
+    },
     "bili_calendar": {
       "$name": "Live Calendar",
       "start_time": "Time",

@@ -56,24 +56,37 @@ export default class DTree extends Vue {
       height: 100%;
       overflow-y: auto;
       .el-tree-node {
+        display: inline-flex;
+        flex-direction: column;
+        min-width: 100%;
         .el-tree-node__content {
           height: auto;
           .el-icon-caret-right:before {
             font-size: 18px;
           }
         }
+        .el-tree-node__children {
+          display: flex;
+          flex-direction: column;
+        }
         .d-tree__node {
           padding: 8px 4px;
           font-size: 20px;
+          display: flex;
+          align-items: center;
           > * + * {
             margin-left: 8px;
           }
           .node-icon {
             display: inline-block;
-            width: 24px;
-            max-height: 24px;
-            img {
-              width: 100%;
+            height: 32px;
+            .node-icon--font {
+              width: 24px;
+              height: 24px;
+            }
+            .node-icon--image {
+              width: auto;
+              height: 100%;
               object-fit: scale-down;
             }
           }

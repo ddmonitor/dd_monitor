@@ -75,6 +75,14 @@
       "nameField": "展示字段",
       "codeField": "编码字段"
     },
+    "department": {
+      "$name": "团体信息",
+      "code": "团体编码",
+      "icon": "LOGO",
+      "name": "团体名称",
+      "parentId": "上级团体",
+      "originName": "原名"
+    },
     "bili_calendar": {
       "$name": "直播日历",
       "start_time": "时间",

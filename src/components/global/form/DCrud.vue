@@ -5,6 +5,7 @@
         <DTree v-if="config.showTree"
           v-model="treeItem" 
           :showCode="config.tree.showCode" 
+          :showIcon="config.tree.showIcon" 
           :tree="tree">
         </DTree>
 
@@ -73,7 +74,7 @@
     display: flex;
 
     .d-tree {
-      width: 300px;
+      width: 400px;
       height: 100%;
       margin-right: 16px;
     }

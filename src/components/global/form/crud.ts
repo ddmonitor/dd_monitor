@@ -46,6 +46,7 @@ export interface ColumnConfig {
 
 export interface TreeConfig {
     showCode?: boolean;
+    showIcon?: boolean;
     props: {
         id?: "id" | string;
         name?: "name" | string;

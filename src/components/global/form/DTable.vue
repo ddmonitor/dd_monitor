@@ -20,10 +20,18 @@
           <af-table-column v-if="!col.tableHidden" :key="col.prop"
             :label="col.i18n ? $t(`forms.${col.i18n}`) : col.label"
             :prop="col.prop"
-            :width="col.width || undefined">
+            :width="col.width || undefined"
+            :class-name="'d-table-column-'+col.type">
             <template slot-scope="{row}">
               <slot :name="'col.'+col.prop" :row="row">
-                {{col.presentProp ? row[col.presentProp] : row[col.prop]}}
+                <el-image v-if="col.type=='image' && row[col.prop]" 
+                  :src="row[col.prop]"
+                  fit="scale-down"
+                  :preview-src-list="data.map(d=>d[col.prop]).filter(d=>!!d)" >
+                </el-image>
+                <template v-else>
+                  {{col.presentProp ? row[col.presentProp] : row[col.prop]}}
+                </template>
               </slot>
             </template> 
           </af-table-column>
@@ -69,6 +77,24 @@
     flex: auto;
     padding:0 16px;
     background-color: white;
+
+    .el-table {
+      .el-table__body {
+        .d-table-column-image {
+          padding-top: 0;
+          padding-bottom: 0;
+          .cell {
+            display: flex;
+            justify-content: center;
+            min-width: 180px;
+            .el-image__inner {
+              display: inline-block;
+              height: 42px;
+            }
+          }
+        }
+      }
+    }
   }
 
   .d-table__pager {
