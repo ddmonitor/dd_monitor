@@ -65,16 +65,16 @@ export default class MetaModule extends Vue {
         required: true
       },
       {
-        prop: "icon",
-        type: "image",
-        i18n: "department.icon",
-        readonly: true
-      },
-      {
         prop: "name",
         type: "text",
         i18n: "department.name",
         required: true
+      },
+      {
+        prop: "icon",
+        type: "image",
+        i18n: "department.icon",
+        colSpan: 24,
       },
       {
         prop: "originName",

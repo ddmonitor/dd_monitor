@@ -26,7 +26,7 @@
 
   <el-row v-else
     type="flex" justify="center">
-    <el-col :xs="24" :sm="20" :md="18" :lg="16" :xl="12" >
+    <el-col :xs="24" :sm="20" :md="18" :lg="16" >
       <el-form v-if="myValue" ref="$form"
         :model="myValue"
         label-width="160px"  >
@@ -77,6 +77,10 @@
                         <span>{{i.label}}</span>
                       </el-option>
                     </el-select>
+                    <el-input v-else-if="col.type=='image'"
+                      v-model="myValue[col.prop]" 
+                      type="url"
+                    />
 
                     <d-input-ref v-else-if="col.type=='ref'" 
                       v-model="myValue[col.prop]" 
