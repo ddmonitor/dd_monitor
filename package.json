@@ -12,6 +12,7 @@
     "@fortawesome/fontawesome-free": "^5.13.0",
     "@moefe/vue-aplayer": "^2.0.0-beta.5",
     "af-table-column": "^1.0.3",
+    "ali-oss": "^6.10.0",
     "array-proto-ext": "^1.5.2",
     "core-js": "^3.6.5",
     "element-ui": "^2.4.5",
@@ -28,6 +29,7 @@
   },
   "devDependencies": {
     "@intlify/vue-i18n-loader": "^1.0.0",
+    "@types/ali-oss": "^6.0.5",
     "@types/lodash": "^4.14.157",
     "@types/webpack": "^4.41.17",
     "@typescript-eslint/eslint-plugin": "^2.33.0",

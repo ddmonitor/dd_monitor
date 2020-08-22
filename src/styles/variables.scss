@@ -37,7 +37,8 @@ $accent-light-7: mix(white, $accent-color, 70%);
 $accent-light-9: mix(white, $accent-color, 90%);
 
 $--tree-node-hover-background-color: $primary-light-9;
+$--table-header-background-color: $accent-light-9;
 
-@import "~element-ui/packages/theme-chalk/src/index";
+@import "~element-ui/packages/theme-chalk/src/common/var.scss";
 
 $basic-border: $--border-color-base;

@@ -1,23 +1,25 @@
 <template>
 <div class="d-form">
   <div v-if="mode=='view'|| mode=='approval' || mode=='userView'"
-    class="el-table el-table--fit el-table--striped el-table--border el-table--enable-row-hover el-table--enable-row-transition">
+    class="el-table el-table--fit el-table--border el-table--enable-row-hover el-table--enable-row-transition">
     <div class="el-table__body-wrapper">
       <table class="el-table__body" v-if="myValue">
         <tbody>
-          <tr v-for="(col, i) in columns" 
-            :key="'col_'+col.prop"
+          <tr v-for="(row, i) in myColumns" 
+            :key="'row_'+i"
             class="el-table__row" :class="{'el-table__row--striped': i%2==1}">
-            <td style="width:200px">
-              <div class="cell">
-                {{col.i18n ? $t(`forms.${col.i18n}`) : col.label}}
-              </div>
-            </td>
-            <td style="width:50vw">
-              <div class="cell">
-                {{col.presentProp ? myValue[col.presentProp] : myValue[col.prop]}}
-              </div>
-            </td>
+            <template v-for="col in row">
+              <th style="width:160px" :key="'label_'+col.prop">
+                <div class="cell">
+                  <span>{{col.i18n ? $t(`forms.${col.i18n}`) : col.label}}</span>
+                </div>
+              </th>
+              <td :key="'col_'+col.prop" :colspan="Math.ceil(col.colSpan / 12) * 2 - 1">
+                <div class="cell">
+                  <span>{{col.presentProp ? myValue[col.presentProp] : myValue[col.prop]}}</span>
+                </div>
+              </td>
+            </template>
           </tr>
         </tbody>
       </table>
@@ -88,6 +90,13 @@
                       :required="col.required"
                       :refKey="col['ref.refKey']"
                     />
+                    <d-input-dict v-else-if="col.type=='dict'" 
+                      v-model="myValue[col.prop]" 
+                      :disabled="col.readonly"
+                      :required="col.required"
+                      :dictKey="col['dict.dictKey']"
+                    />
+
                     <el-input v-else
                       v-model="myValue[col.prop]" 
                       :type="col.type"
@@ -109,19 +118,21 @@
 <style lang="scss">
 .d-form {
   background-color: white;
-  width: fit-content;
-  margin: 0 auto;
   height: 1vh;
   flex: auto;
   .el-table {
     height: 100%;
-    width: auto;
+    width: 75%;
+    margin: 0 auto;
     .el-table__body-wrapper {
       height: 100%;
       width: auto;
       overflow-y: auto;
       .el-table__body {
-        margin: 0 auto;
+        width: 100%;
+        td {
+          min-width: 160px;
+        }
       }
     }
   }

@@ -36,6 +36,32 @@ export default class DForm<T extends {} = Dictionary<any>> extends Vue {
     @Ref()
     $form!: ElForm;
 
+    get myColumns() {
+        const groups: {
+            [key: number]: ColumnConfig[]
+        } = {
+            0: []
+        };
+
+        let i = 0;
+        let span = 0;
+        for (const col of this.columns) {
+            col.colSpan = col.colSpan ?? 12;
+          
+            let sum = span + col.colSpan;
+            if (sum <= 24) {
+                span = sum;
+            } else {
+                span = col.colSpan;
+                i++;
+                groups[i] = [];
+            }
+            groups[i].push(col);
+        }
+
+        return groups;
+    }
+
     myValue: T = null as any;
 
     mounted() {

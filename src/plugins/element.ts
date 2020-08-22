@@ -8,3 +8,5 @@ Vue.use(Element, {
 
 import AFTableColumn from 'af-table-column';
 Vue.use(AFTableColumn);
+
+import "@/styles/element.scss";
