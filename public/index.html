@@ -21,14 +21,31 @@
         height: 100vh; width: 100vw;
         margin: 0; padding: 0;
       }
-      .splash-screen img {
-        height: 20%; width: auto;
+      .splash-screen .logo {
+        height: 20%; width: auto;position: relative;
+      }
+      .splash-screen .logo img {
+        height: 100%;
+        width: auto;
+      }
+      .splash-screen .logo img.dd {
+        position: absolute;left: 0;top: 0;z-index: 66;
+        /* sine ease */
+        animation: splash-icon 1s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
+      }
+      @keyframes splash-icon {
+        0% { transform: translateY(5px); }
+        50% { transform: translateY(-5px); }
+        100% { transform: translateY(5px); }
       }
     </style>
 
     <div id="app">
       <div class="splash-screen">
-        <img src="img/dd.png" />
+        <div class="logo">
+          <img src="img/monitor.png" />
+          <img class="dd" src="img/dd.png" />
+        </div>
         <h3>Loading...</h3>
       </div>
     </div>
