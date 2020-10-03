@@ -26,7 +26,7 @@
             :page.sync="pageInfo"
             @page-change="pageChange"
             @command="execute"
-            @inline-command="execute">
+            @inline-command="executeInline">
           </DTable>
 
           <el-drawer :visible.sync="formVisible" 

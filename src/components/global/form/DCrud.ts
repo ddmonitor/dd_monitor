@@ -103,12 +103,10 @@ export default class DCrud<T extends {} = Dictionary<any>> extends Vue {
     this.loadData();
   }
 
-  async execute(command: Command<any>, row?: any) {
+  async execute(command: Command<any>) {
     console.log(command.name + " executed");
     switch (command.name) {
       case "crud.view":
-        this.row = row;
-        await this.$nextTick();
         this.mode = "view";
         this.rowTemp = this.row;
         this.formVisible = true;
@@ -119,8 +117,6 @@ export default class DCrud<T extends {} = Dictionary<any>> extends Vue {
         this.formVisible = true;
         break;
       case "crud.edit":
-        this.row = row;
-        await this.$nextTick();
         this.mode = "edit";
         this.rowTemp = this.row;
         this.formVisible = true;
@@ -131,6 +127,39 @@ export default class DCrud<T extends {} = Dictionary<any>> extends Vue {
       default:
         break;
     }
+  }
+
+  async executeInline(command: Command<any>, row?: any) {
+    console.log(command.name + " executed");
+    switch (command.name) {
+      case "crud.view":
+        this.row = row;
+        await this.$nextTick();
+        this.mode = "view";
+        this.rowTemp = this.row;
+        this.formVisible = true;
+        break;
+      case "crud.edit":
+        this.row = row;
+        await this.$nextTick();
+        this.mode = "edit";
+        this.rowTemp = this.row;
+        this.formVisible = true;
+        break;
+      default:
+        break;
+    }
+  }
+  //#endregion
+
+  //#region public methods
+  public setData(data: T[]) {
+    this.row = null;
+    this.rowTemp = null;
+    this.selectionList = [];
+    this.formVisible = false;
+
+    this.data = data;
   }
   //#endregion
 
