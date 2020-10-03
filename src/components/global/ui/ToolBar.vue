@@ -1,5 +1,5 @@
 <template>
-  <div class="d-toolbar">
+  <div class="d-toolbar" :class="{ 'd-toolbar--inline': mode=='inline' }">
     <template v-for="cmd in commands">
       <slot :name="'cmd.'+cmd.command.name" :bind="cmd">
         <el-tooltip 
@@ -11,14 +11,27 @@
             <span v-else>{{$t(cmd.command.tooltip)}}</span>
           </template>
 
-          <el-button v-if="cmd.type == 'button' || !cmd.type" 
-            :key="'btn_'+ cmd.command.name"
-            plain :size="cmd.size || 'small'" 
-            :icon="cmd.command.icon"
-            :disabled="!cmd.executable"
-            @click="onCommand(cmd)">
-            {{$t(cmd.command.text)}}
-          </el-button>
+          <template v-if="mode == 'inline'">
+            <el-button v-if="cmd.type == 'button' || !cmd.type" 
+              :key="'btn_'+ cmd.command.name"
+              size="mini" type="text"
+              :icon="cmd.command.icon"
+              :disabled="!cmd.executable"
+              @click="onCommand(cmd)">
+              {{$t(cmd.command.text)}}
+            </el-button>
+          </template>
+          <template v-else>
+              <el-button v-if="cmd.type == 'button' || !cmd.type" 
+              :key="'btn_'+ cmd.command.name"
+              :size="cmd.size || 'small'" 
+              plain
+              :icon="cmd.command.icon"
+              :disabled="!cmd.executable"
+              @click="onCommand(cmd)">
+              {{$t(cmd.command.text)}}
+            </el-button>
+          </template>
         </el-tooltip>
       </slot>
     </template>
@@ -35,6 +48,9 @@ export default class ToolBar extends Vue {
   @Prop({ type: Array, default: () => [] })
   commands!: UICommandBinding[];
 
+  @Prop({ type: String, default: "top" })
+  mode!: "top" | "inline"
+
   onCommand(cmd: UICommandBinding) {
     this.$emit("command", cmd);
   }
@@ -46,8 +62,16 @@ export default class ToolBar extends Vue {
   width: 100%;
   padding: 8px 16px;
   background-color: white;
+  display: inline-flex;
   > * + * {
     margin-left: 16px;
   }
+
+  &.d-toolbar--inline {
+    padding: 0 8px;
+    justify-content: space-between;
+    background-color: transparent;
+  }
+
 }
 </style>

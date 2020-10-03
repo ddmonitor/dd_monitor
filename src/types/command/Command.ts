@@ -26,7 +26,7 @@ export interface UICommandBinding<T extends Command = Command>
         type: ComponentType;
         size?: "small" | "medium" | "mini";
         sort?: number;
-        
+        location?: "command-bar" | "table-inline";
 }
 
 export interface CommandHost {

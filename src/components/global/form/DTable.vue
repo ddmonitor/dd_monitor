@@ -1,7 +1,7 @@
 <template>
   <div class="d-table">
     <div v-if="config.showCommand" class="d-table__commandbar">
-      <ToolBar :commands="commands"
+      <ToolBar :commands="topCommands"
         @command="onCommand">
        
       </ToolBar>
@@ -13,7 +13,7 @@
         :highlight-current-row="true"
         @selection-change="selectionChange"
         @current-change="currentRowChange">
-        <el-table-column type="selection" v-if="config.selection"/>
+        <el-table-column type="selection" fixed="left" v-if="config.selection" label=""/>
         <el-table-column type="index" v-if="config.showIndex" label="#"/>
 
         <template v-for="col in config.columns">
@@ -37,12 +37,18 @@
           </af-table-column>
         </template>
 
-        <af-table-column fixed="right" v-if="config.showAction">   
+        <el-table-column fixed="right" v-if="config.showAction" 
+          label="" min-width="160px"
+          class-name="d-table-column-action">   
           <template slot-scope="{row}">
             <slot name="action" :row="row">
+              <ToolBar :commands="inlineCommands" mode="inline"
+                @command="onInlineCommand($event, row)">
+              
+              </ToolBar>
             </slot>
           </template>  
-        </af-table-column>
+        </el-table-column>
       </el-table>
     </ResponsivePanel>
 

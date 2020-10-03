@@ -1,7 +1,7 @@
 import { Vue, Component, Prop, PropSync, Ref, Watch } from "vue-property-decorator";
 import { Dictionary } from 'array-proto-ext';
 import { Table as ElTable } from 'element-ui';
-import { Command, CommandHost, CommandBinding, CommandExecutor } from '@/types/command/Command';
+import { Command, CommandHost, UICommandBinding, CommandExecutor } from '@/types/command/Command';
 import { DCrudConfig, Page, ColumnConfig } from './crud';
 
 
@@ -19,7 +19,7 @@ export default class DTable<T extends {} = Dictionary<any>> extends Vue
     config!: DCrudConfig;
 
     @Prop({ type: Array, default: () => [] })
-    commands!: CommandBinding[];
+    commands!: UICommandBinding[];
 
     @PropSync("page", { 
         default: () => ({
@@ -37,10 +37,18 @@ export default class DTable<T extends {} = Dictionary<any>> extends Vue
 
     get bindings() {
         return this.commands
-            .reduce<Dictionary<CommandBinding>>((s, v)=> {
+            .reduce<Dictionary<UICommandBinding>>((s, v)=> {
                 s[v.command.name] = v;
                 return s;
             }, {});
+    }
+
+    get topCommands() {
+        return this.commands.filter(c => !c.location || c.location == "command-bar");
+    }
+
+    get inlineCommands() {
+        return this.commands.filter(c => c.location == "table-inline");
     }
 
     mounted() {
@@ -79,22 +87,12 @@ export default class DTable<T extends {} = Dictionary<any>> extends Vue
         this.$emit("page-change", this.pageInfo);
     }
     
-    onCommand({ command }: CommandBinding) {
+    onCommand({ command }: UICommandBinding) {
         this.$emit("command", command);
-        // switch (command.name) {
-        //     case "crud.add":
-        //         this.$emit("row-add");
-        //         break;
-        //     case "crud.edit":
-        //         this.$emit("row-edit", this.value);
-        //         break;
-        //     case "crud.delete":
-        //         this.$emit("row-delete", this.selection);
-        //         break;
-        //     default:
-        //         break;
-        // }
-        
+    }
+
+    onInlineCommand({ command }: UICommandBinding, row: any) {
+        this.$emit("inline-command", command, row);
     }
 
 }

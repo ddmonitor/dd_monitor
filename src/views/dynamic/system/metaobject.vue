@@ -28,19 +28,19 @@ import {
   CommandHost,
   CommandBinding,
   Command,
-  CommandExecutor,
+  CommandExecutor, UICommandBinding
 } from "@/types/command/Command";
 import { AddCommand, EditCommand, DeleteCommand, ViewCommand } from "@/types/command/Crud";
 
 @Component
 export default class metaobject extends Vue {
 
-  get commands(): CommandBinding[] {
+  get commands(): UICommandBinding[] {
     return [
-      { command: ViewCommand, executable: !!this.currentRow },
-      { command: AddCommand, executable: true },
-      { command: EditCommand, executable: !!this.currentRow },
-      { command: DeleteCommand, executable: this.selection.length > 0 }, 
+      { command: ViewCommand, type: "button", executable: true, location: "table-inline"  },
+      { command: AddCommand, type: "button",  executable: true },
+      { command: EditCommand, type: "button",  executable: true, location: "table-inline" },
+      { command: DeleteCommand, type: "button",  executable: this.selection.length > 0 }, 
     ];
   }
 
@@ -54,6 +54,7 @@ export default class metaobject extends Vue {
 
     showIndex: true,
     showCommand: true,
+    showAction: true,
     showTree: false,
     page: true,
     columns: [

@@ -25,7 +25,8 @@
             :selection.sync="selectionList"
             :page.sync="pageInfo"
             @page-change="pageChange"
-            @command="execute">
+            @command="execute"
+            @inline-command="execute">
           </DTable>
 
           <el-drawer :visible.sync="formVisible" 
